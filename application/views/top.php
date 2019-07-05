@@ -2,110 +2,190 @@
 	defined('BASEPATH')OR exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="utf-8">
-	<title>SisBeneficiario - GCR</title>
-	<meta name="description" content="Sistema de registo Beneficiario">
-	<meta name="author" content="GCR">
-	<meta name="keyword" content="GCR, Girl Child Right, GCR Dashboard, Sistema de Beneficiario, SisBeneficiario">
-	<!-- end: Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SisBeneficiario - GCR</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="<?php echo base_url();?>rg_assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?php echo base_url();?>rg_assets/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="<?php echo base_url();?>rg_assets/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?php echo base_url();?>rg_assets/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="<?php echo base_url();?>rg_assets/dist/css/skins/_all-skins.min.css">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="<?php echo base_url();?>rg_assets/bower_components/jvectormap/jquery-jvectormap.css">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="<?php echo base_url();?>rg_assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="<?php echo base_url();?>rg_assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+	<!-- DataTables -->
+	<link rel="stylesheet" href="<?php echo base_url();?>rg_assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+	<!-- Select2 -->
+  <link rel="stylesheet" href="<?php echo base_url();?>rg_assets/bower_components/select2/dist/css/select2.min.css">
+  <!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="<?php echo base_url();?>rg_assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-	<!-- start: Mobile Specific -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- end: Mobile Specific -->
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
 
-	<!-- start: CSS -->
-	<link id="bootstrap-style" href="<?php echo base_url();?>rg_assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="<?php echo base_url();?>rg_assets/css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link id="base-style" href="<?php echo base_url();?>rg_assets/css/style.css" rel="stylesheet">
-	<link id="base-style-responsive" href="<?php echo base_url();?>rg_assets/css/style-responsive.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-	<!-- end: CSS -->
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
-	<!-- start: Favicon -->
-	<link rel="shortcut icon" href="img/favicon.ico">
-	<!-- end: Favicon -->
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+<body class="hold-transition skin-green fixed sidebar-mini">
+<div class="wrapper">
 
-<body>
-		<!-- start: Header -->
-	<div class="navbar ">
-		<div class="navbar-inner green">
-			<div class="container-fluid">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<a class="brand" href="<?php echo base_url(''); ?>"><span>SisBeneficiario</span></a>
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="<?php echo base_url(); ?>" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>A</b>SB</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Admin</b>SGB</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
 
-				<!-- start: Header Menu -->
-				<div class="nav-no-collapse header-nav ">
-					<ul class="nav pull-right"
-						<!-- start: User Dropdown -->
-						<li class="dropdown">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> Gil dos Santos
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li class="dropdown-menu-title">
- 									<span>Definicoes da conta</span>
-								</li>
-								<li><a href="#"><i class="halflings-icon user"></i> Perfil</a></li>
-								<li><a href="#"><i class="halflings-icon off"></i> Terminar sessao</a></li>
-							</ul>
-						</li>
-						<!-- end: User Dropdown -->
-					</ul>
-				</div>
-				<!-- end: Header Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+					<!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="<?php echo base_url();?>rg_assets/dist/img/avatar5.png" class="user-image" alt="User Image">
+              <span class="hidden-xs">Gil dos Santos</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="<?php echo base_url();?>rg_assets/dist/img/avatar5.png" class="img-circle" alt="User Image">
 
-			</div>
-		</div>
-	</div>
-	<!-- start: Header -->
+                <p>
+                  Gil dos Santos - Web Developer
+                  <small>Desde Junho de 2014</small>
+                </p>
+              </li>
 
-		<div class="container-fluid-full">
-		<div class="row-fluid">
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                </div>
+                <div class="pull-right">
+                  <a href="#" class="btn btn-default btn-flat">Terminar sess&atilde;o</a>
+                </div>
+              </li>
+            </ul>
+          </li>
 
-			<!-- start: Main Menu -->
-			<div id="sidebar-left" class="span2">
-				<div class="nav-collapse sidebar-nav">
-					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a href="<?php echo base_url(); ?>"><i class="icon-dashboard"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-						<li><a href="<?php echo base_url('beneficiario'); ?>"><i class="icon-edit"></i><span class="hidden-tablet"> Beneficiarios</span></a></li>
-						<li><a href="#"><i class="icon-list-alt"></i><span class="hidden-tablet"> Graficos</span></a></li>
-						<li><a href="#"><i class="icon-tasks"></i><span class="hidden-tablet"> Relatorios</span></a></li>
-						<li>
-							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Definicoes</span><span class="label label-important"> 2 </span></a>
-							<ul>
-								<li><a class="submenu" href=""><i class="icon-file-alt"></i><span class="hidden-tablet"> Projectos</span></a></li>
-								<li><a class="submenu" href=""><i class="icon-file-alt"></i><span class="hidden-tablet"> Servicos</span></a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<!-- end: Main Menu -->
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="<?php echo base_url();?>rg_assets/dist/img/avatar5.png" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>Gil dos Santos</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Web Developer</a>
+        </div>
+      </div>
+      <!-- search form -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Pesquisar...">
+          <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">CONFIGURA&Ccedil;&Atilde;O PRINCIPAL</li>
+        <li class="active">
+          <a href="<?php echo base_url()?>">
+            <i class="fa fa-dashboard"></i> <span>Vis&atilde;o Geral</span>
+            <span class="pull-right-container">
+              <i class="fa fa-circle-o"></i>
+            </span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Cadastros</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">3</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url('projecto'); ?>"><i class="fa fa-edit"></i> Projectos</a></li>
+            <li><a href="<?php echo base_url('servico'); ?>"><i class="fa fa-edit"></i> Servi&ccedil;os</a></li>
+            <li><a href="<?php echo base_url('beneficiario'); ?>"><i class="fa fa-edit"></i> Benefici&aacute;rios</a></li>
+          </ul>
+        </li>
 
-			<noscript>
-				<div class="alert alert-block span10">
-					<h4 class="alert-heading">Warning!</h4>
-					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
-				</div>
-			</noscript>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-pie-chart"></i> <span>Relat&oacute;rios</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+             <li><a href="#"><i class="fa fa-circle-o"></i> Benefici&aacute;rio</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Servi&ccedil;o</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Projecto</a></li>
+          </ul>
+        </li>
 
-			<!-- start: Content -->
-			<div id="content" class="span10">
+        <li><a href="#"><i class="fa fa-book"></i> <span>Documenta&ccedil;&atilde;o</span></a></li>
+        <li class="header">ETIQUETAS</li>
+        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Importante</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Atencao</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Informacao</span></a></li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
 
 
-			<ul class="breadcrumb">
-				<li>
-					<i class="icon-home"></i>
-					<a href="index.html">Home</a>
-					<i class="icon-angle-right"></i>
-				</li>
-				<li><a href="#"><?php echo $titulo?></a></li>
-			</ul>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+        Vis&atilde;o Geral
+        <small>Painel de controle</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><?php echo $titulo; ?></li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content
+		<div class="row">
+			<!-- left column -->

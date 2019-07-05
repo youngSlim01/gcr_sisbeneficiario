@@ -1,85 +1,79 @@
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
-	</div>
-	
-	<div class="clearfix"></div>
-	
-	<footer style="margin: auto;">
+</div>
+<!-- /.row (main row) -->
+</section>
+</div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.0.0
+    </div>
+    <strong>Copyright &copy; 2019 <a href="#">GCR</a>.</strong> All rights
+    reserved.
+  </footer>
 
-		<p style="position:absolute;">
-			<span>&copy; 2019 <a href="#" alt="GCR" style="color: white">Girl Child Right - GCR</a></span>
-			
-		</p>
+</div>
+<!-- ./wrapper -->
 
-	</footer>
-	
-	<!-- start: JavaScript-->
+<!-- jQuery 3 -->
+<script src="<?php echo base_url();?>rg_assets/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="<?php echo base_url();?>rg_assets/bower_components/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.7 -->
+<script src="<?php echo base_url();?>rg_assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Sparkline -->
+<script src="<?php echo base_url();?>rg_assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<!-- jvectormap -->
+<script src="<?php echo base_url();?>rg_assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="<?php echo base_url();?>rg_assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="<?php echo base_url();?>rg_assets/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="<?php echo base_url();?>rg_assets/bower_components/moment/min/moment.min.js"></script>
+<script src="<?php echo base_url();?>rg_assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- datepicker -->
+<script src="<?php echo base_url();?>rg_assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?php echo base_url();?>rg_assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- Slimscroll -->
+<script src="<?php echo base_url();?>rg_assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="<?php echo base_url();?>rg_assets/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- Select2 -->
+<script src="<?php echo base_url();?>rg_assets/bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- DataTables -->
+<script src="<?php echo base_url();?>rg_assets/bower_components/datatables.net/js/jquery.dataTables.js"></script>
+<script src="<?php echo base_url();?>rg_assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo base_url();?>rg_assets/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="<?php echo base_url();?>rg_assets/dist/js/pages/dashboard.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo base_url();?>rg_assets/dist/js/demo.js"></script>
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
 
-		<script src="<?php echo base_url();?>rg_assets/js/jquery-1.9.1.min.js"></script>
-	<script src="<?php echo base_url();?>rg_assets/js/jquery-migrate-1.0.0.min.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/jquery-ui-1.10.0.custom.min.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/jquery.ui.touch-punch.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/modernizr.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/bootstrap.min.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/jquery.cookie.js"></script>
-	
-		<script src='<?php echo base_url();?>rg_assets/js/fullcalendar.min.js'></script>
-	
-		<script src='<?php echo base_url();?>rg_assets/js/jquery.dataTables.min.js'></script>
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
 
-		<script src="<?php echo base_url();?>rg_assets/js/excanvas.js"></script>
-	<script src="<?php echo base_url();?>rg_assets/js/jquery.flot.js"></script>
-	<script src="<?php echo base_url();?>rg_assets/js/jquery.flot.pie.js"></script>
-	<script src="<?php echo base_url();?>rg_assets/js/jquery.flot.stack.js"></script>
-	<script src="<?php echo base_url();?>rg_assets/js/jquery.flot.resize.min.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/jquery.chosen.min.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/jquery.uniform.min.js"></script>
-		
-		<script src="<?php echo base_url();?>rg_assets/js/jquery.cleditor.min.js"></script>
-	
-		<script src="js/jquery.noty.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/jquery.elfinder.min.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/jquery.raty.min.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/jquery.iphone.toggle.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/jquery.uploadify-3.1.min.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/jquery.gritter.min.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/jquery.imagesloaded.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/jquery.masonry.min.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/jquery.knob.modified.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/jquery.sparkline.min.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/counter.js"></script>
-	
-		<script src="<?php echo base_url();?>rg_assets/js/retina.js"></script>
+    //Initialize Select2 Elements
+    $('.select2').select2()
+  })
+</script>
 
-		<script src="<?php echo base_url();?>rg_assets/js/custom.js"></script>
-	<!-- end: JavaScript-->
-	
 </body>
 </html>

@@ -1,49 +1,228 @@
-<div class="row-fluid sortable ui-sortable">
-				<div class="box span12" style="">
-					<div class="box-header" data-original-title="">
-						<h2><i class="halflings-icon edit"></i><span class="break"></span>Form Elements</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content" style="display: block;">
-						<form class="form-horizontal">
-						  <fieldset>
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">Auto complete </label>
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" id="typeahead" data-provide="typeahead" data-items="4" data-source="[&quot;Alabama&quot;,&quot;Alaska&quot;,&quot;Arizona&quot;,&quot;Arkansas&quot;,&quot;California&quot;,&quot;Colorado&quot;,&quot;Connecticut&quot;,&quot;Delaware&quot;,&quot;Florida&quot;,&quot;Georgia&quot;,&quot;Hawaii&quot;,&quot;Idaho&quot;,&quot;Illinois&quot;,&quot;Indiana&quot;,&quot;Iowa&quot;,&quot;Kansas&quot;,&quot;Kentucky&quot;,&quot;Louisiana&quot;,&quot;Maine&quot;,&quot;Maryland&quot;,&quot;Massachusetts&quot;,&quot;Michigan&quot;,&quot;Minnesota&quot;,&quot;Mississippi&quot;,&quot;Missouri&quot;,&quot;Montana&quot;,&quot;Nebraska&quot;,&quot;Nevada&quot;,&quot;New Hampshire&quot;,&quot;New Jersey&quot;,&quot;New Mexico&quot;,&quot;New York&quot;,&quot;North Dakota&quot;,&quot;North Carolina&quot;,&quot;Ohio&quot;,&quot;Oklahoma&quot;,&quot;Oregon&quot;,&quot;Pennsylvania&quot;,&quot;Rhode Island&quot;,&quot;South Carolina&quot;,&quot;South Dakota&quot;,&quot;Tennessee&quot;,&quot;Texas&quot;,&quot;Utah&quot;,&quot;Vermont&quot;,&quot;Virginia&quot;,&quot;Washington&quot;,&quot;West Virginia&quot;,&quot;Wisconsin&quot;,&quot;Wyoming&quot;]"><ul class="typeahead dropdown-menu" style="top: 40px; left: 190px; display: none;"><li data-value="Georgia" class=""><a href="#">Geor<strong>gi</strong>a</a></li><li data-value="Virginia" class=""><a href="#">Vir<strong>gi</strong>nia</a></li><li data-value="West Virginia" class="active"><a href="#">West Vir<strong>gi</strong>nia</a></li></ul>
-							  </div>
-							</div>
-							<div class="control-group">
-							  <label class="control-label" for="date01">Date input</label>
-							  <div class="controls">
-								<input type="text" class="input-xlarge datepicker hasDatepicker" id="date01" value="02/16/12">
-							  </div>
-							</div>
+<div class="row">
+  <!-- left column -->
+<div class="col-md-12">
+          <!-- Custom Tabs -->
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Dados gerais</a></li>
+              <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Dados Laboratoriais</a></li>
+              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_1">
+				<section class="content">
+				      <div class="row">
+				        <!-- left column -->
+				<div class="col-md-6">
+				  <!-- general form elements -->
+				<div class="box box-primary">
+				  <div class="box-header with-border">
+				    <h3 class="box-title">Dados do Estudantes</h3>
+				  </div>
+				  <!-- /.box-header -->
+				<!-- form start -->
+				        <form role="form" id="frm_estudante" action="#" method="post">
+				          <div class="box-body">
+			            <div class="form-group">
+			              <label for="apelido">Nome completo</label>
+			              <input type="text" class="form-control" name="nome" placeholder="Nome completo ...">
+			            </div>
+                  <div class="form-group">
+		                  <label>Sexo</label>
+ 			             <select class="form-control" name="sexo" style="width: 100%;" tabindex="-1" aria-hidden="true">
+ 		                  <option selected="selected">Selecione ...</option>
+ 		                  <option id="1">Masculino</option>
+ 		                  <option id="2">Feminino</option>
+ 		                </select>
+ 	                </div>
+									<div class="form-group">
+			              <label>Celular</label>
+			              <input type="text" class="form-control" name="celuar" placeholder="Celular">
+			            </div>
+                <div class="form-group">
+                  <label>Contacto TB</label>
+                 <select class="form-control" name="contacto_tb" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                    <option selected="selected">Selecione ...</option>
+                    <option id="1">Sim</option>
+                    <option id="2">Nao</option>
+                  </select>
+                </div>
+		            <div class="form-group">
+		              <label for="nome">Distrito</label>
+		              <input type="text" class="form-control" name="distrito" placeholder="Distrito">
+		            </div>
 
-							<div class="control-group">
-							  <label class="control-label" for="fileInput">File input</label>
-							  <div class="controls">
-								<div class="uploader" id="uniform-fileInput"><input class="input-file uniform_on" id="fileInput" type="file"><span class="filename" style="user-select: none;">No file selected</span><span class="action" style="user-select: none;">Choose File</span></div>
-							  </div>
-							</div>
-							<div class="control-group hidden-phone">
-							  <label class="control-label" for="textarea2">Textarea WYSIWYG</label>
-							  <div class="controls">
-								<div class="cleditorMain" style="width: 500px; height: 250px;"><div class="cleditorToolbar" style="height: 53px;"><div class="cleditorGroup"><div class="cleditorButton cleditorDisabled" title="Bold" disabled="disabled" style="background-color: transparent;"></div><div class="cleditorButton cleditorDisabled" title="Italic" style="background-position: -24px center; background-color: transparent;" disabled="disabled"></div><div class="cleditorButton cleditorDisabled" title="Underline" style="background-position: -48px center; background-color: transparent;" disabled="disabled"></div><div class="cleditorButton cleditorDisabled" title="Strikethrough" style="background-position: -72px center;" disabled="disabled"></div><div class="cleditorButton cleditorDisabled" title="Subscript" style="background-position: -96px center;" disabled="disabled"></div><div class="cleditorButton cleditorDisabled" title="Superscript" style="background-position: -120px center;" disabled="disabled"></div><div class="cleditorDivider"></div></div><div class="cleditorGroup"><div class="cleditorButton cleditorDisabled" title="Font" disabled="disabled" style="background-position: -144px center; background-color: transparent;"></div><div class="cleditorButton cleditorDisabled" title="Font Size" style="background-position: -168px center;" disabled="disabled"></div><div class="cleditorButton cleditorDisabled" title="Style" style="background-position: -192px center;" disabled="disabled"></div><div class="cleditorDivider"></div></div><div class="cleditorGroup"><div class="cleditorButton cleditorDisabled" title="Font Color" disabled="disabled" style="background-position: -216px center;"></div><div class="cleditorButton cleditorDisabled" title="Text Highlight Color" style="background-position: -240px center;" disabled="disabled"></div><div class="cleditorButton cleditorDisabled" title="Remove Formatting" style="background-position: -264px center;" disabled="disabled"></div><div class="cleditorDivider"></div></div><div class="cleditorGroup"><div class="cleditorButton cleditorDisabled" title="Bullets" disabled="disabled" style="background-position: -288px center;"></div><div class="cleditorButton cleditorDisabled" title="Numbering" style="background-position: -312px center;" disabled="disabled"></div><div class="cleditorDivider"></div></div><div class="cleditorGroup"><div class="cleditorButton cleditorDisabled" title="Outdent" disabled="disabled" style="background-position: -336px center;"></div><div class="cleditorButton cleditorDisabled" title="Indent" style="background-position: -360px center;" disabled="disabled"></div><div class="cleditorDivider"></div></div><div class="cleditorGroup"><div class="cleditorButton cleditorDisabled" title="Align Text Left" disabled="disabled" style="background-position: -384px center;"></div><div class="cleditorButton cleditorDisabled" title="Center" style="background-position: -408px center;" disabled="disabled"></div><div class="cleditorButton cleditorDisabled" title="Align Text Right" style="background-position: -432px center;" disabled="disabled"></div><div class="cleditorButton cleditorDisabled" title="Justify" style="background-position: -456px center;" disabled="disabled"></div><div class="cleditorDivider"></div></div><div class="cleditorGroup"><div class="cleditorButton cleditorDisabled" title="Undo" disabled="disabled" style="background-position: -480px center; background-color: transparent;"></div><div class="cleditorButton cleditorDisabled" title="Redo" style="background-position: -504px center; background-color: transparent;" disabled="disabled"></div><div class="cleditorDivider"></div></div><div class="cleditorGroup"><div class="cleditorButton cleditorDisabled" title="Insert Horizontal Rule" disabled="disabled" style="background-position: -528px center; background-color: transparent;"></div><div class="cleditorButton cleditorDisabled" title="Insert Image" style="background-position: -552px center; background-color: transparent;" disabled="disabled"></div><div class="cleditorButton cleditorDisabled" title="Insert Hyperlink" style="background-position: -576px center; background-color: transparent;" disabled="disabled"></div><div class="cleditorButton cleditorDisabled" title="Remove Hyperlink" style="background-position: -600px center; background-color: transparent;" disabled="disabled"></div><div class="cleditorDivider"></div></div><div class="cleditorGroup"><div class="cleditorButton cleditorDisabled" title="Cut" disabled="disabled" style="background-position: -624px center; background-color: transparent;"></div><div class="cleditorButton cleditorDisabled" title="Copy" style="background-position: -648px center; background-color: transparent;" disabled="disabled"></div><div class="cleditorButton cleditorDisabled" title="Paste" style="background-position: -672px center; background-color: transparent;" disabled="disabled"></div><div class="cleditorButton cleditorDisabled" title="Paste as Text" style="background-position: -696px center; background-color: transparent;" disabled="disabled"></div><div class="cleditorDivider"></div></div><div class="cleditorGroup"><div class="cleditorButton cleditorDisabled" title="Print" disabled="disabled" style="background-position: -720px center; background-color: transparent;"></div><div class="cleditorButton" title="Show Rich Text" style="background-position: -744px center; background-color: transparent;"></div></div></div><textarea class="cleditor" id="textarea2" rows="3" style="display: inline-block; width: 500px; height: 197px;"></textarea><iframe frameborder="0" src="javascript:true;" style="width: 500px; height: 197px; display: none;"></iframe></div>
-							  </div>
-							</div>
-							<div class="form-actions">
-							  <button type="submit" class="btn btn-primary">Save changes</button>
-							  <button type="reset" class="btn">Cancel</button>
-							</div>
-						  </fieldset>
-						</form>
+			          </div>
+				          <!-- /.box-body -->
+				</div>
+				<!-- /.box -->
+				</div>
 
-					</div>
-				</div><!--/span-->
+				<!-- .col (left) -->
+				<!-- right column -->
+				<div class="col-md-6">
+				  	<div class="box box-primary">
+				    <div class="box-header with-border">
+				      <h3 class="box-title pull-right">...</h3>
+				    </div>
+				    <!-- /.box-header -->
+				<!-- form start -->
+				        <div class="box-body">
+			           <div class="form-group">
+			             <label>Nit de caso index</label>
+			             <input type="text" class="form-control" name="nit_index" placeholder="Enter ...">
+			           </div>
+			           <div class="form-group">
+      					<label>Data de Nascimento:</label>
+      					<div class="input-group date">
+      					  <div class="input-group-addon">
+      					    <i class="fa fa-calendar"></i>
+      					  </div>
+      					  <input type="text" class="form-control pull-right" id="datepicker">
+      					</div>
+							<!-- /.input group -->
+							</div>
+	            <div class="form-group">
+	              <label for="nome">Sinais e sintoma de TB</label>
+	              <input type="text" class="form-control" name="ss_tb" placeholder="FESTAL">
+	            </div>
+              <div class="form-group">
+                <label for="nome">Morada</label>
+                <input type="text" class="form-control" name="morada" placeholder="Bairro">
+              </div>
+              <div class="form-group">
+                <label>Referido</label>
+               <select class="form-control" name="referido" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                  <option selected="selected">Selecione ...</option>
+                  <option id="1">Sim</option>
+                  <option id="2">Nao</option>
+                </select>
+              </div>
+		          </div>
 
-			</div>
+				            <div class="pull-right">
+				          		<p class="box-title pull-right">Passo 1/3</p>
+				        	</div>
+				      </div>
+				      <!-- /.box -->
+				</div>
+				<!--/.col (right) -->
+				</div>
+				<!-- /.row -->
+				</section>
+				<!-- /.content -->
+
+              </div>
+
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_2">
+
+					<section class="content">
+				      <div class="row">
+				        <!-- left column -->
+				<div class="col-md-6">
+				  <!-- general form elements -->
+				<div class="box box-primary">
+				  <div class="box-header with-border">
+				    <h3 class="box-title">Dados clinicos</h3>
+				  </div>
+				  <!-- /.box-header -->
+				          <div class="box-body">
+                    <div class="form-group">
+ 		                  <label>Servico</label>
+   			             <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+   		                  <option selected="selected">Selecione ...</option>
+   		                  <option>Alaska</option>
+   		                </select>
+ 	                </div>
+                    <div class="form-group">
+                      <label>Diagnosticado</label>
+                     <select class="form-control" name="giagnosticado" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                        <option selected="selected">Selecione ...</option>
+                        <option id="1">Sim</option>
+                        <option id="2">Nao</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Iniciou tratamento?</label>
+                     <select class="form-control" name="tratamento" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                        <option selected="selected">Selecione ...</option>
+                        <option id="1">Sim</option>
+                        <option id="2">Nao</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>local de tratamento</label>
+                     <select class="form-control" name="ltratamento" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                        <option selected="selected">Selecione ...</option>
+                        <option id="1">Unidade sanitaria</option>
+                        <option id="2">Comunidade</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="apelido">Unidade sanitaria</label>
+                      <input type="text" class="form-control" name="usanitaria" placeholder="U sanitaria de registo">
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" id="guardar" class="btn btn-primary col-md-3"> <i class="fa fa-save"></i> Guardar</button>
+                    </div>
+				          </div>
+				          <!-- /.box-body -->
+				</div>
+				<!-- /.box -->
+				</div>
+
+				<!-- .col (left) -->
+				<!-- right column -->
+				<div class="col-md-6">
+				  	<div class="box box-primary">
+				    <div class="box-header with-border">
+				      <h3 class="box-title pull-right">....</h3>
+				    </div>
+				    <!-- /.box-header -->
+				        <div class="box-body">
+
+                  <div class="form-group">
+                    <label for="nome">Resultado de tratamento</label>
+                    <input type="text" class="form-control" name="rtratamento" placeholder="Resultado de tratamento ...">
+                  </div>
+
+                <div class="form-group">
+                    <label>NIT de registo livro TB</label>
+                    <input type="text" class="form-control" name="nit_livro_tb" placeholder="NIT ...">
+                  </div>
+		              <div class="form-group">
+			                  <label>Observacoes</label>
+			                  <textarea class="form-control" rows="4" name="obs" placeholder="Escreve....."></textarea>
+			               </div>
+				          </div>
+                </form>
+                  <div class="box-footer">
+  	                <div class="pull-right">
+  	             	 <p class="box-title pull-right">Passo 2/2</p>
+  	            	</div>
+                	</div>
+				      </div>
+				      <!-- /.box -->
+				</div>
+				<!--/.col (right) -->
+				</div>
+				<!-- /.row -->
+				</section>
+				<!-- /.content -->
+
+              </div>
+
+
+
+
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- nav-tabs-custom -->
+        </div>
+     </div>
+   </div>
+   <!-- /.row -->

@@ -12,7 +12,7 @@ class Beneficiario extends CI_Controller
 		$this->load->view('botton');
   }
 
-  public function cadastar($value='')
+  public function cadastrar($value='')
   {
     $dados = array('titulo'=>'Cadastar Beneficiario');
 		$this->load->view('top',$dados);
