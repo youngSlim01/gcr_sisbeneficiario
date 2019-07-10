@@ -9,20 +9,33 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <form role="form">
+          <?php
+  				if($msg = get_msg()):
+  						echo $msg;
+  				endif;
+  				?>
+          <?php
+          if($msg = get_msg()):
+              echo '<div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>'.$msg.'!</strong> .
+              </div>';
+          endif;
+          ?>
+          <form action="<?php echo base_url('projecto/cadastrar');?>" method="POST">
             <!-- text input -->
-            <div class="form-group">
+            <div class="form-group " id="nome">
               <label>Nome do projecto</label>
-              <input type="text" class="form-control" name="projecto" placeholder="Projecto ...">
+              <input type="text" class="form-control" id="pronome" name="pronome" placeholder="Projecto ...">
             </div>
             <!-- textarea -->
-            <div class="form-group">
+            <div class="form-group" id="descricao">
               <label>Descricao</label>
-              <textarea class="form-control" rows="3" name="descricao" placeholder="Descricao ..."></textarea>
+              <textarea class="form-control" rows="3" id="prodescricao" name="prodescricao" placeholder="Descricao ..."></textarea>
             </div>
 
             <div class="form-group col-md-2">
-              <button type="submit" class="btn btn-block btn-primary btn-flat">Guardar projecto</button>
+              <input type="submit" class="btn btn-block btn-primary btn-flat" value="Guardar projecto" id="btnPSalvar"/>
             </div>
           </form>
         </div>
@@ -33,3 +46,8 @@
     <!--/.col (right) -->
   </div>
   <!-- /.row -->
+<!-- <div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+        Warning alert preview. This alert is dismissable.
+      </div> -->

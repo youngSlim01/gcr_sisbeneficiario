@@ -53,6 +53,8 @@
 <script src="<?php echo base_url();?>rg_assets/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>rg_assets/dist/js/demo.js"></script>
+<!-- Meu personalizado -->
+<script src="<?php echo base_url();?>rg_assets/dist/js/meu.js"></script>
 <script>
   $(function () {
     $('#example1').DataTable()
@@ -74,6 +76,5 @@
     $('.select2').select2()
   })
 </script>
-
 </body>
 </html>

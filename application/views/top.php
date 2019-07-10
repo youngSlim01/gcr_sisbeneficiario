@@ -144,6 +144,7 @@
             <li><a href="<?php echo base_url('projecto'); ?>"><i class="fa fa-edit"></i> Projectos</a></li>
             <li><a href="<?php echo base_url('servico'); ?>"><i class="fa fa-edit"></i> Servi&ccedil;os</a></li>
             <li><a href="<?php echo base_url('beneficiario'); ?>"><i class="fa fa-edit"></i> Benefici&aacute;rios</a></li>
+						<li><a href="<?php echo base_url('activista'); ?>"><i class="fa fa-edit"></i> Activistas</a></li>
           </ul>
         </li>
 
@@ -181,7 +182,7 @@
         <small>Painel de controle</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active"><?php echo $titulo; ?></li>
       </ol>
     </section>

@@ -21,7 +21,7 @@
 				  </div>
 				  <!-- /.box-header -->
 				<!-- form start -->
-				        <form role="form" id="frm_estudante" action="#" method="post">
+				        <form role="form" id="activista" action="#" method="post">
 				          <div class="box-body">
 			            <div class="form-group">
 			              <label for="apelido">Nome completo</label>
