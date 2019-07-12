@@ -14,14 +14,6 @@
   						echo $msg;
   				endif;
   				?>
-          <?php
-          if($msg = get_msg()):
-              echo '<div class="alert alert-success">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>'.$msg.'!</strong> .
-              </div>';
-          endif;
-          ?>
           <form action="<?php echo base_url('projecto/cadastrar');?>" method="POST">
             <!-- text input -->
             <div class="form-group " id="nome">

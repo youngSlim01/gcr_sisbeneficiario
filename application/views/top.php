@@ -183,7 +183,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><?php echo $titulo; ?></li>
+        <li class="active"><?php if(isset($titulo))echo $titulo; ?></li>
       </ol>
     </section>
     <!-- Main content -->

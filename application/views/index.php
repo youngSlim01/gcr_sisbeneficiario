@@ -18,7 +18,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>7<sup style="font-size: 20px"></sup></h3>
+              <h3><?php echo $contar_projecto; ?><sup style="font-size: 20px"></sup></h3>
 
               <p>Projectos</p>
             </div>
@@ -87,34 +87,21 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                    <td>Projecto I</td>
-                    <td><span class="label label-success">Activo</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                    <td>Projecto II</td>
-                    <td><span class="label label-warning">Pendente</span></td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                    <td>Projecto III</td>
-                    <td><span class="label label-danger">Desactivado</span></td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                    <td>Projecto IV</td>
-                    <td><span class="label label-info">Em processo</span></td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                    <td>Projecto V</td>
-                    <td><span class="label label-warning">Terminando</span></td>
-                  </tr>
+                    <?php foreach ($listar as $projecto): ?>
+                      <tr>
+                        <td><a href="pages/examples/invoice.html"><?php echo $projecto->codigo; ?></a></td>
+                        <td><?php echo $projecto->nome; ?></td>
+                        <?php if($projecto->status=="Activo"): ?>
+                        	<td><span class="label label-success"><?php echo $projecto->status;?></span></td>
+      									<?php elseif($projecto->status=="Pendente"): ?>
+      										<td><span class="label label-primary"><?php echo $projecto->status;?></span></td>
+      									<?php elseif($projecto->status=="Desactivado"): ?>
+      										<td><span class="label label-warning"><?php echo $projecto->status;?></span></td>
+      									<?php elseif($projecto->status=="Terminado"): ?>
+      										<td><span class="label label-danger"><?php echo $projecto->status;?></span></td>
+      									<?php endif;?>
+                      </tr>
+                    <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>

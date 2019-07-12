@@ -13,12 +13,12 @@
           <!-- text input -->
           <div class="form-group">
             <label>Nome do Serviço</label>
-            <input type="text" class="form-control" name="projecto" placeholder="Serviço ...">
+            <input type="text" class="form-control" name="servnome" placeholder="Serviço ...">
           </div>
           <!-- textarea -->
           <div class="form-group">
             <label>Descricao</label>
-            <textarea class="form-control" rows="3" name="descricao" placeholder="Descricao ..."></textarea>
+            <textarea class="form-control" rows="3" name="servdescricao" placeholder="Descricao ..."></textarea>
           </div>
           <!-- select -->
           <div class="form-group">
