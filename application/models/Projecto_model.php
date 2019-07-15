@@ -1,4 +1,4 @@
-\<?php
+<?php
   class Projecto_model extends CI_Model {
     public function __construct(){
         parent::__construct();
@@ -10,22 +10,18 @@
       return $query->result();
     }
 
+    public function listarProjectos_activo($id)
+    {
+      $this->db->where('status',$id);
+      $resultado = $this->db->get('projecto')->result();
+      return $resultado;
+    }
     public function cadastrar($nome,$descricao,$codigo){
       $fields = array(
         'nome' =>$nome,
         'descricao'=>$descricao,
         'codigo'=>$codigo,
         'status'=>'activo'
-      );
-      return $this->db->insert('projecto',$fields);
-    }
-
-    public function editar($id,$nome,$descricao,$codigo){
-      $fields = array(
-        'nome' =>$nome,
-        'descricao'=>$descricao,
-        'codigo'=>$codigo,
-        'status'=>'Activo'
       );
       return $this->db->insert('projecto',$fields);
     }

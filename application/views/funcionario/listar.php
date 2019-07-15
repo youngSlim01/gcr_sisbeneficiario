@@ -4,7 +4,7 @@
     <div class="box">
       <div class="box-header">
         <h3 class="box-title">Todos Activistas</h3>
-        <a href="<?php echo base_url('activista/cadastrar');?>" class="pull-right"><button type="button" class="btn btn-block btn-success">Adicionar</button></a>
+        <a href="<?php echo base_url('funcionario/cadastrar');?>" class="pull-right"><button type="button" class="btn btn-block btn-success">Adicionar</button></a>
       </div>
       <!-- /.box-header -->
       <div class="box-body">

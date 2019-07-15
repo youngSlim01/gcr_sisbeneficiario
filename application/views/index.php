@@ -89,7 +89,7 @@
                   <tbody>
                     <?php foreach ($listar as $projecto): ?>
                       <tr>
-                        <td><a href="pages/examples/invoice.html"><?php echo $projecto->codigo; ?></a></td>
+                        <td><a href="<?php echo base_url('projecto/definicao/').$projecto->id?>"><?php echo $projecto->codigo; ?></a></td>
                         <td><?php echo $projecto->nome; ?></td>
                         <?php if($projecto->status=="Activo"): ?>
                         	<td><span class="label label-success"><?php echo $projecto->status;?></span></td>

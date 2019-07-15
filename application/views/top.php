@@ -137,14 +137,27 @@
             <i class="fa fa-files-o"></i>
             <span>Cadastros</span>
             <span class="pull-right-container">
-              <span class="label label-primary pull-right">3</span>
+              <span class="label label-primary pull-right">4</span>
             </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url('projecto'); ?>"><i class="fa fa-edit"></i> Projectos</a></li>
             <li><a href="<?php echo base_url('servico'); ?>"><i class="fa fa-edit"></i> Servi&ccedil;os</a></li>
             <li><a href="<?php echo base_url('beneficiario'); ?>"><i class="fa fa-edit"></i> Benefici&aacute;rios</a></li>
-						<li><a href="<?php echo base_url('activista'); ?>"><i class="fa fa-edit"></i> Activistas</a></li>
+						<li><a href="<?php echo base_url('funcionario'); ?>"><i class="fa fa-edit"></i> Funcion&aacute;rios</a></li>
+          </ul>
+        </li>
+
+				<li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Configuracoes</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">1</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url('Funcionario/listarTiposFuncionarios'); ?>"><i class="fa fa-edit"></i> Tipo Funcionario</a></li>
           </ul>
         </li>
 

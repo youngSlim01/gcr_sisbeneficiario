@@ -1,176 +1,28 @@
 <!-- Small boxes (Stat box) -->
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>150</h3>
-              <p>Servico 1</p>
+        <?php foreach($listar_servicos as $servico): ?>
+          <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <?php if($servico->status_servico=="Pendente"): ?>
+              <div class="small-box bg-aqua">
+            <?php elseif($servico->status_servico=="Activo"):?>
+              <div class="small-box bg-green">
+            <?php elseif($servico->status_servico=="Terminado"):?>
+              <div class="small-box bg-red">
+            <?php elseif($servico->status_servico=="Desactivado"):?>
+              <div class="small-box bg-yellow">
+            <?php endif; ?>
+              <div class="inner">
+                <h3>150</h3>
+                <p><?php echo $servico->nome_servico;?></p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="<?php echo base_url('servico/definicao/').$servico->id;?>" class="small-box-footer"><?php echo $servico->nome?> | Mais info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>53<sup style="font-size: 20px"></sup></h3>
-
-              <p>Servico 2</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
-
-              <p>Servico 3</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>15</h3>
-
-              <p>Servico 4</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
-
-              <p>Servico 5</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
-
-              <p>servico 6</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
-
-              <p>servico 7</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
-
-              <p>servico 7</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
-
-              <p>servico 7</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
-
-              <p>servico 7</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
-
-              <p>servico 7</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
-
-              <p>servico 7</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
+        <?php endforeach; ?>
       </div>
       <!-- /.row -->
       <!-- Main row -->

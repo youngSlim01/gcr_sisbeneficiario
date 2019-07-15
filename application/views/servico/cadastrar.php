@@ -1,6 +1,5 @@
 <div class="row">
-  <!-- right column -->
-  <div class="col-md-12">
+  <div class="col-xs-12">
     <!-- general form elements disabled -->
     <div class="box box-info box-solid">
       <div class="box-header with-border">
@@ -9,11 +8,16 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <form role="form">
+        <?php
+        if($msg = get_msg()):
+            echo $msg;
+        endif;
+        ?>
+        <form role="form" action="<?php echo base_url('servico/cadastrar');?>" method="POST">
           <!-- text input -->
           <div class="form-group">
             <label>Nome do Serviço</label>
-            <input type="text" class="form-control" name="servnome" placeholder="Serviço ...">
+            <input type="text" class="form-control" name="servnome" placeholder="Serviço...">
           </div>
           <!-- textarea -->
           <div class="form-group">
@@ -23,9 +27,10 @@
           <!-- select -->
           <div class="form-group">
             <label>Projecto</label>
-            <select class="form-control">
-              <option>Selecione ...</option>
-              <option id="">option 2</option>
+            <select class="form-control" name="servprojecto">
+              <?php foreach ($listarProjectos as $projecto): ?>
+                <option value="<?php echo $projecto->id; ?>"><?php echo $projecto->nome; ?></option>
+              <?php endforeach; ?>
             </select>
           </div>
           <div class="form-group col-md-2">

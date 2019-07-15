@@ -18,6 +18,7 @@ class Projecto extends CI_Controller
   public function __construct(){
       parent::__construct();
       $this->load->model('Projecto_model','p');
+      $this->load->model('Servico_model','s');
   }
   public function index($value='')
   {
@@ -88,7 +89,7 @@ class Projecto extends CI_Controller
   public function editar($id='')
   {
     $dados = array(
-      'titulo' => 'Alterar produto',
+      'titulo' => 'Alterar projecto',
       'projecto' => $this->p->getProjectById($id),
 
    );
@@ -135,5 +136,30 @@ class Projecto extends CI_Controller
    $this->load->view('projecto/editar');
    $this->load->view('botton');
   #redirect(base_url('projecto'),'refresh');
+  }
+  public function definicao($id='')
+  {
+    $dados = array(
+      'titulo' => 'Configuracoes de projecto',
+      'projecto' => $this->p->getProjectById($id),
+      'contar_servico_do_projecto' => $this->s->contar_ServiceBy_id_Projecto($id),
+   );
+
+    $this->load->view('top',$dados);
+    $this->load->view('projecto/definicao');
+    $this->load->view('botton');
+  }
+
+  public function pservico($id)
+  {
+    $dados = array(
+      'titulo' => 'Servicos do projecto',
+      'projecto' => $this->p->getProjectById($id),
+      'listar_servicos_por_projecto' =>$this->s->listar_servicos_por_projecto($id)
+   );
+
+    $this->load->view('top',$dados);
+    $this->load->view('projecto/servico_projecto');
+    $this->load->view('botton');
   }
 }
