@@ -1,5 +1,5 @@
 <?php
-  class Projecto_model extends CI_Model {
+  class Projecto_model extends CI_Model { 
     public function __construct(){
         parent::__construct();
         $this->load->database();

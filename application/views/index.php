@@ -33,7 +33,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3><?php echo $contar_servico; ?></h3>
 
               <p>Servi&ccedil;os</p>
             </div>
@@ -46,16 +46,16 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-red">
+          <div class="small-box bg-blue">
             <div class="inner">
-              <h3>15</h3>
+              <h3><?php echo $contar_activista;?></h3>
 
-              <p>Visitas do portal</p>
+              <p>Activistas</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url('funcionario');?>" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

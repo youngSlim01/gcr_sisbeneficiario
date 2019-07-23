@@ -12,7 +12,9 @@ class Welcome extends CI_Controller {
 		$dados = array(
 			'titulo'=>'Dashboard',
 			'listar'=>$this->p->listarProjectos_activo('Activo'),
-			'contar_projecto'=>$this->p->contar_projecto()
+			'contar_projecto'=>$this->p->contar_projecto(),
+			'contar_activista'=>$this->f->contarActivistas(1),
+			'contar_servico'=>$this->s->contar_servicos(),
 		);
 		$this->load->view('top',$dados);
 		$this->load->view('index');

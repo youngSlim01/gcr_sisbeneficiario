@@ -132,4 +132,10 @@ $autoload['language'] = array('portuguese');
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array();
+$autoload['model'] = array(
+  'Projecto_model'=>'p',
+  'Funcionario_model'=>'f',
+  'Distrito_model'=>'d',
+  'UnidadeSanitaria_model'=>'ud',
+  'Detalhes_activista_model'=>'det'
+);

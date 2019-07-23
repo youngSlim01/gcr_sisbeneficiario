@@ -11,9 +11,51 @@ class Funcionario extends CI_Controller
     $this->load->model('Funcionario_model','f');
   }
 
-  public function index($value='')
+  public function index()
   {
-    $dados = array('titulo' => "Activistas");
+    $dados = array(
+      'titulo' => "Supervisores e Activistas",
+      'listar'=>$this->f->listarActivistas(),
+      'contar_activista'=>$this->f->contarActivistas(1),
+    );
+    $this->load->view('top',$dados);
+    $this->load->view('funcionario/listar');
+    $this->load->view('botton');
+  }
+
+  public function listarFuncionarios()
+  {
+    $datestring = '%Y';
+    $dados = array(
+      'titulo' => "Funcionarios",
+      'listar'=>$this->f->listarFuncionarios(),
+      'contar_activista'=>$this->f->contarFuncionarios(),
+      'ano_actual'=>strftime($datestring),
+    );
+    $this->load->view('top',$dados);
+    $this->load->view('funcionario/listar_todos');
+    $this->load->view('botton');
+  }
+
+  public function listar_gestores()
+  {
+    $dados = array(
+      'titulo' => "Gestores",
+      'listar'=>$this->f->listarGestores(),
+      'contar_activista'=>$this->f->contarActivistas(1),
+    );
+    $this->load->view('top',$dados);
+    $this->load->view('funcionario/listar');
+    $this->load->view('botton');
+  }
+
+  public function listar_supervisores()
+  {
+    $dados = array(
+      'titulo' => "Supervisores",
+      'listar'=>$this->f->listarSupervisores(),
+      'contar_activista'=>$this->f->contarActivistas(1),
+    );
     $this->load->view('top',$dados);
     $this->load->view('funcionario/listar');
     $this->load->view('botton');
@@ -21,7 +63,107 @@ class Funcionario extends CI_Controller
 
   public function cadastrar($value='')
   {
-    $dados = array('titulo' => "Activistas");
+    $dados = array(
+      'titulo' => "Funcionarios",
+      'categorias'=>$this->f->listarTiposFuncionarios(),
+      'projectos'=>$this->p->listarProjectos(),
+      'distritos'=>$this->d->listar_distritos(),
+      'unid_sanitarias'=>$this->ud->listar_unidades_sanitarias(),
+    );
+
+    $this->form_validation->set_rules('fnome','Nome de funcionario','trim|required');
+    if($this->form_validation->run()==false):
+      if(validation_errors()):
+        set_msg('<div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <h4><i class="icon fa fa-warning"></i> Alerta!</h4><h5>'.validation_errors().'
+        </h5></div>');
+      endif;
+    else:
+      $nome = $this->input->post('fnome');
+      $sexo = $this->input->post('fsexo');
+      $projecto = $this->input->post('fprojecto');
+      $categoria = $this->input->post('fcategoria');
+      $distrito = $this->input->post('fdistrito');
+      $dataNascimento = $this->input->post('fdata_nascimento');
+      $unid_sanitaria = $this->input->post('funidade_sanitaria');
+      $now = date('Y-m-d H:i:s');
+
+      $dados = array(
+        'fnome' => $nome,
+        'Sexo' => $sexo,
+        'data_nascimento' => date('y-m-d H:i:s', strtotime($dataNascimento)),
+        'tipo_funcionario_id' => $categoria,
+        'projecto_id' => $projecto,
+        'data_created' => $now,
+      );
+
+      if($categoria == 1){
+        if($this->f->cadastrarFuncionario($dados)):
+          $detalhes = array(
+            'id_activista' =>$this->f->ultimo_id(),
+            'unidade_sanitaria_id'=>$unid_sanitaria,
+            'distrito_id'=>$distrito,
+          );
+          if($this->det->insert_detalhes($detalhes)):
+            set_msg('<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            Activista '.$nome. ' registado com Sucesso!
+            </div>');
+            redirect(base_url('funcionario'),'refresh');
+          endif;
+        endif;
+      }elseif($categoria==2) {
+        if($this->f->cadastrarFuncionario($dados)):
+          $detalhe = array(
+            'id_activista' =>$this->f->ultimo_id(),
+            'distrito_id'=>$distrito,
+          );
+          if($this->det->insert_detalhes($detalhe)):
+            set_msg('<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            Supervisor(a) '.$nome. ' registado com Sucesso!
+            </div>');
+            redirect(base_url('funcionario'),'refresh');
+          endif;
+        else:
+          set_msg('<div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          Erro ocorido ao salvar!</div>');
+        endif;
+      }elseif($categoria==3) {
+        if($this->f->cadastrarFuncionario($dados)):
+            set_msg('<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            Gestor(a) '.$nome. ' registado com Sucesso!
+            </div>');
+            redirect(base_url('funcionario/listarFuncionarios'),'refresh');
+        else:
+          set_msg('<div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          Erro ocorido ao salvar!</div>');
+        endif;
+      }elseif($categoria==4) {
+        $data = array(
+          'fnome' => $nome,
+          'Sexo' => $sexo,
+          'data_nascimento' => date('y-m-d H:i:s', strtotime($dataNascimento)),
+          'tipo_funcionario_id' => $categoria,
+          'data_created' => $now,
+        );
+        if($this->f->cadastrarFuncionario($data)):
+            set_msg('<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            Coordenador(a) '.$nome. ' registado com Sucesso!
+            </div>');
+            redirect(base_url('funcionario/listarFuncionarios'),'refresh');
+        else:
+          set_msg('<div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          Erro ocorido ao salvar!</div>');
+        endif;
+        }
+    endif;
     $this->load->view('top',$dados);
     $this->load->view('funcionario/cadastrar');
     $this->load->view('botton');
@@ -51,7 +193,7 @@ class Funcionario extends CI_Controller
     else:
       $nom = $this->input->post('tiponome');
       $nome = array(
-        'nome' => $nom,
+        'nome_funcao' => $nom,
         'status'=>'Activo'
       );
 

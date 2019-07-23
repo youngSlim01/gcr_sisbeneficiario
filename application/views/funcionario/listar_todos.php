@@ -3,7 +3,7 @@
 
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Todos Activistas</h3>
+        <h3 class="box-title">Funcionarios</h3>
         <a href="<?php echo base_url('funcionario/cadastrar');?>" class="pull-right"><button type="button" class="btn btn-block btn-success">Adicionar</button></a>
       </div>
       <!-- /.box-header -->
@@ -19,7 +19,7 @@
             <th>Nome</th>
             <th>Funcao</th>
             <th>Sexo</th>
-            <th>Localiza&ccedil;&atilde;o</th>
+            <th>Idade</th>
             <th>Projecto</th>
             <th>Accoes</th>
           </tr>
@@ -30,7 +30,7 @@
                 <td><?php echo $func->fnome; ?></td>
                 <td><?php echo $func->nome_funcao; ?></td>
                 <td><?php if($func->Sexo==1){echo "Masculino";}else{echo "Feminino";} ?></td>
-                <td><?php echo $func->fnome; ?></td>
+                <td><?php echo $ano_actual - (int)$func->data_nascimento; ?></td>
                 <td><?php echo $func->nome; ?></td>
                 <td>X</td>
               </tr>

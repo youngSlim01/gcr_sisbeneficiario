@@ -3,7 +3,7 @@
 <div class="col-md-12">
 	<div class="box">
             <div class="box-header">
-              <h3 class="box-title">Projectos da Organização</h3>
+              <h3 class="box-title">categorias da Organização</h3>
               <a href="<?php echo base_url('funcionario/CadastrarTiposFuncionarios');?>" class="pull-right"><button type="button" class="btn btn-block btn-success">Adicionar</button></a>
             </div>
             <!-- /.box-header -->
@@ -26,7 +26,7 @@
 								<?php foreach ($listar as $projecto) :?>
                 <tr>
                   <td><?php echo $projecto->id; ?></td>
-                  <td><?php echo $projecto->nome;?></td>
+                  <td><?php echo $projecto->nome_funcao;?></td>
 									<?php if($projecto->status=="Activo"): ?>
                   	<td><span class="label label-success"><?php echo $projecto->status;?></span></td>
 									<?php elseif($projecto->status=="Pendente"): ?>

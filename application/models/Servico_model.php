@@ -70,6 +70,10 @@ class Servico_model extends CI_Model
     $this->db->where('id_servico',$id);
     return $this->db->update('servico',$data);
   }
+  public function contar_servicos()
+  {
+    return $this->db->count_all('servico');
+  }
 }
 
  ?>
