@@ -30,6 +30,7 @@ class Servico extends CI_Controller
 
     $this->form_validation->set_rules('servnome','Nome do servico','trim|required');
     $this->form_validation->set_rules('servdescricao','descricao','trim|required');
+    
     if($this->form_validation->run()==false){
       if(validation_errors()){
         set_msg('<div class="alert alert-danger alert-dismissible">

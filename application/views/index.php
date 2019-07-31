@@ -4,7 +4,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3><?php echo $contar_beneficiarios; ?></h3>
               <p>Benefici&aacute;rios</p>
             </div>
             <div class="icon">

@@ -12,6 +12,7 @@ class Welcome extends CI_Controller {
 		$dados = array(
 			'titulo'=>'Dashboard',
 			'listar'=>$this->p->listarProjectos_activo('Activo'),
+			'contar_beneficiarios'=>$this->ben->contar_beneficiarios(),
 			'contar_projecto'=>$this->p->contar_projecto(),
 			'contar_activista'=>$this->f->contarActivistas(1),
 			'contar_servico'=>$this->s->contar_servicos(),

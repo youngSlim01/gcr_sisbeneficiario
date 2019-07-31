@@ -137,14 +137,16 @@ class Projecto extends CI_Controller
    $this->load->view('botton');
   #redirect(base_url('projecto'),'refresh');
   }
-  public function definicao($id='')
+  public function definicao($id)
   {
     $dados = array(
       'titulo' => 'Configuracoes de projecto',
       'projecto' => $this->p->getProjectById($id),
+      'contar_beneficiarios_do_projecto' => $this->ben->contar_beneficiarios_por_projecto($id),
+      'contar_activistas_do_projecto' => $this->act->contar_activistas_por_projecto($id),
       'contar_servico_do_projecto' => $this->s->contar_ServiceBy_id_Projecto($id),
-   );
-
+    );
+    
     $this->load->view('top',$dados);
     $this->load->view('projecto/definicao');
     $this->load->view('botton');

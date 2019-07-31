@@ -13,7 +13,7 @@
               <div class="small-box bg-yellow">
             <?php endif; ?>
               <div class="inner">
-                <h3>150</h3>
+                <h3><?php echo $this->ben->contar_beneficiarios_por_servico_no_projecto($servico->projecto_id,$servico->id_servico); ?></h3>
                 <p><?php echo $servico->nome_servico;?></p>
               </div>
               <div class="icon">

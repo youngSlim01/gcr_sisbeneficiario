@@ -137,5 +137,8 @@ $autoload['model'] = array(
   'Funcionario_model'=>'f',
   'Distrito_model'=>'d',
   'UnidadeSanitaria_model'=>'ud',
-  'Detalhes_activista_model'=>'det'
+  'Detalhes_activista_model'=>'det',
+  'Beneficiario_model'=>'ben',
+  'Activista_model'=>'act',
+//  'Deficiencia_model'=>'defi'
 );
