@@ -16,7 +16,13 @@ class Beneficiario_model extends CI_model
   {
     return $this->db->count_all('beneficiario')+1;
   }
-
+  public function get_all()
+  {
+    $this->db->select('beneficiario.*, reference.*, distrito.nome_distrito');
+    $this->db->where('beneficiario.id = reference.beneficiario_id');
+    $this->db->join('distrito','distrito = distrito.id_distrito','inner');
+    return $this->db->get('beneficiario, reference')->result();
+  }
   public function cadastrarbeneficiario($dados)
   {
     $this->db->insert('beneficiario',$dados);
@@ -36,20 +42,20 @@ class Beneficiario_model extends CI_model
     return $resultado;
   }
 
-  public function addBeneficiario_servico($dados)
+  public function addBeneficiario_reference($dados)
   {
-    $this->db->insert('beneficiario_servico',$dados);
+    $this->db->insert('reference',$dados);
     return $this->db->insert_id();
   }
   public function contar_beneficiarios()
   {
-    return $this->db->count_all('beneficiario');
+    return $this->db->count_all('reference');
   }
 
   public function contar_beneficiarios_por_projecto($id){
     $this->db->select('*');
     $this->db->where('projecto_id', $id);
-    $resultado = $this->db->get('beneficiario_servico')->num_rows();
+    $resultado = $this->db->get('reference')->num_rows();
     return $resultado;
   }
   public function contar_beneficiarios_por_servico_no_projecto($id,$idserv){

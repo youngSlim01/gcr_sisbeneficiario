@@ -71,6 +71,19 @@ class Funcionario_model extends CI_Model
     return $this->db->insert('funcionario',$value);
   }
 
+  public function cadastrar_usuario($value)
+  {
+    return $this->db->insert('usuario',$value);
+  }
+
+  public function get_project_cod_by_code_in_supervisor($value)
+  {
+    $this->db->join('projecto','funcionario.projecto_id = projecto.id');
+    $this->db->where('funcionario.id_funcionario', $value);
+    $result = $this->db->get('funcionario')->row();
+    return $result;
+  }
+
   public function ultimo_id()
   {
     return $this->db->insert_id();

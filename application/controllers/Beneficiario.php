@@ -6,11 +6,18 @@ class Beneficiario extends CI_Controller
   public function __construct(){
     parent::__construct();
     $this->load->model('Servico_model','s');
+    $this->load->model('Funcionario_model','func');
+
   }
 
-  public function index($value='')
+  public function index()
   {
-    $dados = array('titulo'=>'Beneficiarios');
+    $dados = array(
+      'titulo'=>'Beneficiarios',
+      'beneficiarios' => $this->ben->get_all(),
+    );
+
+    //print_r($this->ben->get_all());exit;
 		$this->load->view('top',$dados);
     $this->load->View("beneficiario/listar");
 		$this->load->view('botton');
@@ -95,17 +102,23 @@ class Beneficiario extends CI_Controller
     $this->load->View("beneficiario/cadastrar");
 		$this->load->view('botton');
   }
-  public function referir($id="")
+  public function referir($id)
   {
     $dados = array(
       'titulo'=>'Referir Beneficiario',
       'distritos'=>$this->d->listar_distritos(),
       'last_inserted' =>$this->ben->beneficiario_id($id),
       'listar_servicos'=>$this->s->listar_servicos(),
+      'unid_sanitarias'=>$this->ud->listar_unidades_sanitarias(),
+      'projecto'=>$this->func->get_project_cod_by_code_in_supervisor(20),
     );
+    $id_projecto = $dados['projecto']->id;
+    $dados['activistas']=$this->act->listar_activistas_por_projecto($id_projecto);
 
-    $this->form_validation->set_rules('rss_tb','Sinais e sintomas','required|trim');
-    $this->form_validation->set_rules('rnit_index','NIT','required|trim');
+    //print_r($dados['activistas']); exit;
+
+    $this->form_validation->set_rules('runidade_sanitaria','Unidade sanitaria','required|trim');
+    $this->form_validation->set_rules('rservico','Servico','required|trim');
 
     if($this->form_validation->run()==false):
       if(validation_errors()):
@@ -116,25 +129,29 @@ class Beneficiario extends CI_Controller
       endif;
     else:
       $codigo = $this->input->post('rcodigo_beneficiario');
-      $cotacto_tb = $this->input->post('rcontacto_tb');
+      $activista = $this->input->post('rcod_activista');
       $servico = $this->input->post('rservico');
-      $nit = $this->input->post('rnit_index');
-      $sinais = $this->input->post('rss_tb');
+      $unid_sanitaria = $this->input->post('runidade_sanitaria');
+      $supervisor = $this->input->post('rcodigo_supervisor');
       $diagnostico = $this->input->post('rdiagnosticado');
 
       $datas = array(
+        'activista_id'=>$activista,
+        'supervisor_id'=>$supervisor,
+        'unidade_sanitaria_id'=>$unid_sanitaria,
+        'date_created'=>data_actual(),
         'beneficiario_id' => $this->ben->beneficiario_id($id)->id,
-        'codigo_beneficiario'=>$codigo,
+        'beneficiario_codigo'=>$codigo,
         'servico_id'=>$servico,
         'projecto_id'=>$this->s->getServiceBy_id($servico)->projecto_id,
       );
 
-      if($this->ben->addBeneficiario_servico($datas)):
+      if($this->ben->addBeneficiario_reference($datas)):
         set_msg('<div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         Beneficiario '.$codigo. ' adicionado com Sucesso!
         </div>');
-        redirect('beneficiario/diagnostico/'.$this->ben->ultimo_id());
+        redirect('beneficiario');
       else:
 
       endif;

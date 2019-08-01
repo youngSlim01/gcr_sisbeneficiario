@@ -18,6 +18,26 @@ if(!function_exists('get_msg')):
 	}
 endif;
 
+if(!function_exists('ano_actual')):
+	//retorna uma definicao definida pela funcao ano_actual
+	function ano_actual(){
+		$ci = & get_instance();
+		$datestring = '%Y';
+		$retorno = strftime($datestring);
+		return $retorno;
+	}
+endif;
+
+if(!function_exists('data_actual')):
+	//retorna uma definicao definida pela funcao ano_actual
+	function data_actual(){
+		$ci = & get_instance();
+		$now = date('Y-m-d H:i:s');
+		$retorno = strftime($now);
+		return $retorno;
+	}
+endif;
+
 if(!function_exists('verifica_login')){
 	//verifica se o usuario esta logado, caso nao redireciona para login
 	function verifica_login(){

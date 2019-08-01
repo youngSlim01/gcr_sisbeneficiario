@@ -18,5 +18,13 @@ class Activista_model extends CI_Model
     $resultado = $this->db->get('funcionario')->num_rows();
     return $resultado;
   }
+
+  public function listar_activistas_por_projecto($id){
+    $this->db->select('*');
+    $this->db->where('projecto_id', $id);
+    $this->db->where('tipo_funcionario_id', 1);
+    $resultado = $this->db->get('funcionario')->result();
+    return $resultado;
+  }
 }
  ?>

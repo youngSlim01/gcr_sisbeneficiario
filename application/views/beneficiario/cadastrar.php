@@ -28,13 +28,12 @@
               <form role="form" id="frm_estudante" action="<?php echo base_url('beneficiario/cadastrar')?>" method="post">
               <div class="box-body">
               <div class="form-group">
-              <label for="apelido">Nome completo</label>
+              <label for="apelido">Nome completo <sup style="color:red;">*</sup></label>
               <input type="text" class="form-control" name="bnome" placeholder="Nome completo ...">
               </div>
               <div class="form-group">
-              <label>Sexo</label>
+              <label>Sexo <sup style="color:red;">*</sup></label>
               <select class="form-control" name="bsexo" style="width: 100%;" tabindex="-1" aria-hidden="true">
-              <option selected="selected">Selecione ...</option>
               <option value="1">Masculino</option>
               <option value="2">Feminino</option>
               </select>
@@ -46,7 +45,6 @@
               <div class="form-group">
               <label>Vulnerabilidade</label>
               <select class="form-control" name="bvulnerabilidade" style="width: 100%;" tabindex="-1" aria-hidden="true">
-              <option selected="selected">Selecione ...</option>
               <option value="1">Nemhum</option>
               <option value="2">Orfao de Pai</option>
               <option value="3">Orfao de Mae</option>
@@ -83,7 +81,7 @@
           <!-- /.box-header -->
           <div class="box-body">
           <div class="form-group">
-          <label>Data de Nascimento:</label>
+          <label>Data de Nascimento: <sup style="color:red;">*</sup></label>
           <div class="input-group date">
           <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
@@ -93,15 +91,17 @@
           <!-- /.input group -->
           </div>
           <div class="form-group">
-          <label for="nome">Deficiente</label>
+          <label for="nome">Deficiencia</label>
           <select class="form-control" name="bdeficiencia" style="width: 100%;" tabindex="-1" aria-hidden="true">
-          <option selected="selected">Selecione ...</option>
-          <option value="1">Sim</option>
-          <option value="2">Nao</option>
+          <option selected="selected">Nenhuma...</option>
+          <option value="Fisica">Fisica</option>
+          <option value="Fisica">Fisica</option>
+          <option value="Mental">Mental</option>
+          <option value="Auditiva">Auditiva</option>
           </select>
           </div>
           <div class="form-group">
-          <label for="nome">Morada</label>
+          <label for="nome">Morada <sup style="color:red;">*</sup></label>
           <input type="text" class="form-control" name="bmorada" placeholder="Bairro">
           </div>
           <div class="form-group">
@@ -120,7 +120,7 @@
 
           </form>
           <div class="pull-right">
-          <p class="box-title pull-right">Passo 1/3</p>
+          <p class="box-title pull-right">Passo 1/1</p>
           </div>
           </div>
           <!-- /.box -->

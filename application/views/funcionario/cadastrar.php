@@ -29,7 +29,7 @@
 				        <form role="form" id="form1" action="#" method="post">
 				          <div class="box-body">
 			            <div class="form-group">
-			              <label for="apelido">Nome completo</label>
+			              <label for="apelido">Nome completo <sup>*.</sup></label>
 			              <input type="text" class="form-control" id="fnome" name="fnome" placeholder="Nome completo ...">
 			            </div>
 
@@ -85,7 +85,7 @@
                      </select>
                    </div>
 			           <div class="form-group">
-      					<label>Data de Nascimento:</label>
+      					<label>Data de Nascimento: <sup>*.</sup></label>
       					<div class="input-group date">
       					  <div class="input-group-addon">
       					    <i class="fa fa-calendar"></i>
@@ -102,6 +102,10 @@
                    <?php endforeach; ?>
                  </select>
                </div>
+               <div class="form-group">
+                  <label>Email <sup>*</sup></label>
+                  <input type="text" class="form-control pull-right" name="unome">
+                </div>
 		          </div>
 				      </div>
 				      <!-- /.box -->

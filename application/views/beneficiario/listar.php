@@ -11,41 +11,51 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
           <tr>
+            <th>Codigo</th>
             <th>Nome</th>
-            <th>Projecto</th>
-            <th>Servi&ccedil;o</th>
-            <th>Localiza&ccedil;&atilde;o</th>
+            <th>Distrito</th>
+            <th>Idade</th>
+            <th>Bairro</th>
+            <th>Sexo</th>
             <th>Estado</th>
+            <th>Op&ccedil;&atilde;o</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>Trident</td>
-            <td>Internet
-              Explorer 4.0
-            </td>
-            <td>Win 95+</td>
-            <td> 4</td>
-            <td>X</td>
-          </tr>
-          <tr>
-            <td>Trident</td>
-            <td>Internet
-              Explorer 5.0
-            </td>
-            <td>Win 95+</td>
-            <td>5</td>
-            <td>C</td>
-          </tr>
+          <?php foreach($beneficiarios as $ben): ?>
+            <tr>
+              <td><a href="<?php echo base_url('beneficiario/definicao/').$ben->id?>"><?php echo $ben->codigo_beneficiario;?></a></td>
+              <td><?php echo $ben->nome;?></td>
+              <td><?php echo $ben->nome_distrito;?></td>
+              <td><?php echo ano_actual() - (int)$ben->data_nascimento;?></td>
+              <td><?php echo $ben->bairro;?></td>
+              <td><?php if($ben->sexo==1){echo "Masculino";}else{echo "Feminino";} ?></td>
+              <?php if($ben->referido == "1"): ?>
+                <td><span class="label label-success"><?php echo "Referido"; ?></span></td>
+              <?php else: ?>
+                <td><span class="label label-warning"><?php echo "Nao referido";?></span></td>
+              <?php endif;?>
+              <td>
+                <div class="btn-group">
+                  <a data-toggle="modal" data-target="#modal-edit-projecto" class="btn btn-sm btn-info"><span class="fa fa-eye"></span></a>
+                  <a href="" class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span></a>
+                  <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-remove"><span class="fa fa-remove"></span></a>
+                </div>
+              </td>
+            </tr>
+          <?php endforeach; ?>
           </tbody>
           <tfoot>
-          <tr>
-            <th>Nome</th>
-            <th>Projecto</th>
-            <th>Servi&ccedil;o</th>
-            <th>Localiza&ccedil;&atilde;o</th>
-            <th>Estado</th>
-          </tr>
+            <tr>
+              <th>Codigo</th>
+              <th>Nome</th>
+              <th>Distrito</th>
+              <th>Idade</th>
+              <th>Bairro</th>
+              <th>Sexo</th>
+              <th>Estado</th>
+              <th>Op&ccedil;&atilde;o</th>
+            </tr>
           </tfoot>
         </table>
       </div>

@@ -70,7 +70,7 @@ class Funcionario extends CI_Controller
       'distritos'=>$this->d->listar_distritos(),
       'unid_sanitarias'=>$this->ud->listar_unidades_sanitarias(),
     );
-
+    $this->form_validation->set_rules('unome','Email','trim|required');
     $this->form_validation->set_rules('fnome','Nome de funcionario','trim|required');
     if($this->form_validation->run()==false):
       if(validation_errors()):
@@ -88,6 +88,8 @@ class Funcionario extends CI_Controller
       $dataNascimento = $this->input->post('fdata_nascimento');
       $unid_sanitaria = $this->input->post('funidade_sanitaria');
       $now = date('Y-m-d H:i:s');
+      $email = $this->input->post('unome');
+      $pass = "12345678";
 
       $dados = array(
         'fnome' => $nome,
@@ -105,12 +107,21 @@ class Funcionario extends CI_Controller
             'unidade_sanitaria_id'=>$unid_sanitaria,
             'distrito_id'=>$distrito,
           );
+          $last_id = $this->f->ultimo_id();
           if($this->det->insert_detalhes($detalhes)):
-            set_msg('<div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            Activista '.$nome. ' registado com Sucesso!
-            </div>');
-            redirect(base_url('funcionario'),'refresh');
+            $user = array(
+              'unome' => $email,
+              'usenha' => $pass,
+              'nivel' => $categoria,
+              'funcionario_id' => $last_id
+            );
+            if($this->f->cadastrar_usuario($user)):
+              set_msg('<div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              Activista '.$nome. ' registado com Sucesso!
+              </div>');
+              redirect(base_url('funcionario'),'refresh');
+            endif;
           endif;
         endif;
       }elseif($categoria==2) {
@@ -119,12 +130,21 @@ class Funcionario extends CI_Controller
             'id_activista' =>$this->f->ultimo_id(),
             'distrito_id'=>$distrito,
           );
+          $last_id = $this->f->ultimo_id();
           if($this->det->insert_detalhes($detalhe)):
-            set_msg('<div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            Supervisor(a) '.$nome. ' registado com Sucesso!
-            </div>');
-            redirect(base_url('funcionario'),'refresh');
+            $user = array(
+              'unome' => $email,
+              'usenha' => $pass,
+              'nivel' => $categoria,
+              'funcionario_id' => $last_id
+            );
+            if($this->f->cadastrar_usuario($user)):
+              set_msg('<div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              Supervisor(a) '.$nome. ' registado com Sucesso!
+              </div>');
+              redirect(base_url('funcionario'),'refresh');
+            endif;
           endif;
         else:
           set_msg('<div class="alert alert-success alert-dismissible">
@@ -132,12 +152,21 @@ class Funcionario extends CI_Controller
           Erro ocorido ao salvar!</div>');
         endif;
       }elseif($categoria==3) {
-        if($this->f->cadastrarFuncionario($dados)):
-            set_msg('<div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            Gestor(a) '.$nome. ' registado com Sucesso!
-            </div>');
-            redirect(base_url('funcionario/listarFuncionarios'),'refresh');
+          if($this->f->cadastrarFuncionario($dados)):
+            $last_id = $this->f->ultimo_id();
+            $user = array(
+              'unome' => $email,
+              'usenha' => $pass,
+              'nivel' => $categoria,
+              'funcionario_id' => $last_id
+            );
+            if($this->f->cadastrar_usuario($user)):
+              set_msg('<div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              Gestor(a) '.$nome. ' registado com Sucesso!
+              </div>');
+              redirect(base_url('funcionario/listarFuncionarios'),'refresh');
+          endif;
         else:
           set_msg('<div class="alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -151,18 +180,177 @@ class Funcionario extends CI_Controller
           'tipo_funcionario_id' => $categoria,
           'data_created' => $now,
         );
+          $last_id = $this->f->ultimo_id();
         if($this->f->cadastrarFuncionario($data)):
+          $user = array(
+            'unome' => $email,
+            'usenha' => $pass,
+            'nivel' => $categoria,
+            'funcionario_id' => $last_id
+          );
+          if($this->f->cadastrar_usuario($user)):
             set_msg('<div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             Coordenador(a) '.$nome. ' registado com Sucesso!
             </div>');
             redirect(base_url('funcionario/listarFuncionarios'),'refresh');
+          endif;
         else:
           set_msg('<div class="alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
           Erro ocorido ao salvar!</div>');
         endif;
-        }
+      }
+
+
+    endif;
+    $this->load->view('top',$dados);
+    $this->load->view('funcionario/cadastrar');
+    $this->load->view('botton');
+  }
+
+  public function editar($value)
+  {
+    $dados = array(
+      'titulo' => "Funcionarios",
+      'categorias'=>$this->f->listarTiposFuncionarios(),
+      'projectos'=>$this->p->listarProjectos(),
+      'distritos'=>$this->d->listar_distritos(),
+      'unid_sanitarias'=>$this->ud->listar_unidades_sanitarias(),
+    );
+    $this->form_validation->set_rules('unome','Email','trim|required');
+    $this->form_validation->set_rules('fnome','Nome de funcionario','trim|required');
+    if($this->form_validation->run()==false):
+      if(validation_errors()):
+        set_msg('<div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <h4><i class="icon fa fa-warning"></i> Alerta!</h4><h5>'.validation_errors().'
+        </h5></div>');
+      endif;
+    else:
+      $nome = $this->input->post('fnome');
+      $sexo = $this->input->post('fsexo');
+      $projecto = $this->input->post('fprojecto');
+      $categoria = $this->input->post('fcategoria');
+      $distrito = $this->input->post('fdistrito');
+      $dataNascimento = $this->input->post('fdata_nascimento');
+      $unid_sanitaria = $this->input->post('funidade_sanitaria');
+      $now = date('Y-m-d H:i:s');
+      $email = $this->input->post('unome');
+      $pass = "12345678";
+
+      $dados = array(
+        'fnome' => $nome,
+        'Sexo' => $sexo,
+        'data_nascimento' => date('y-m-d H:i:s', strtotime($dataNascimento)),
+        'tipo_funcionario_id' => $categoria,
+        'projecto_id' => $projecto,
+        'data_created' => $now,
+      );
+
+      if($categoria == 1){
+        if($this->f->cadastrarFuncionario($dados)):
+          $detalhes = array(
+            'id_activista' =>$this->f->ultimo_id(),
+            'unidade_sanitaria_id'=>$unid_sanitaria,
+            'distrito_id'=>$distrito,
+          );
+          $last_id = $this->f->ultimo_id();
+          if($this->det->insert_detalhes($detalhes)):
+            $user = array(
+              'unome' => $email,
+              'usenha' => $pass,
+              'nivel' => $categoria,
+              'funcionario_id' => $last_id
+            );
+            if($this->f->cadastrar_usuario($user)):
+              set_msg('<div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              Activista '.$nome. ' registado com Sucesso!
+              </div>');
+              redirect(base_url('funcionario'),'refresh');
+            endif;
+          endif;
+        endif;
+      }elseif($categoria==2) {
+        if($this->f->cadastrarFuncionario($dados)):
+          $detalhe = array(
+            'id_activista' =>$this->f->ultimo_id(),
+            'distrito_id'=>$distrito,
+          );
+          $last_id = $this->f->ultimo_id();
+          if($this->det->insert_detalhes($detalhe)):
+            $user = array(
+              'unome' => $email,
+              'usenha' => $pass,
+              'nivel' => $categoria,
+              'funcionario_id' => $last_id
+            );
+            if($this->f->cadastrar_usuario($user)):
+              set_msg('<div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              Supervisor(a) '.$nome. ' registado com Sucesso!
+              </div>');
+              redirect(base_url('funcionario'),'refresh');
+            endif;
+          endif;
+        else:
+          set_msg('<div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          Erro ocorido ao salvar!</div>');
+        endif;
+      }elseif($categoria==3) {
+          if($this->f->cadastrarFuncionario($dados)):
+            $last_id = $this->f->ultimo_id();
+            $user = array(
+              'unome' => $email,
+              'usenha' => $pass,
+              'nivel' => $categoria,
+              'funcionario_id' => $last_id
+            );
+            if($this->f->cadastrar_usuario($user)):
+              set_msg('<div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              Gestor(a) '.$nome. ' registado com Sucesso!
+              </div>');
+              redirect(base_url('funcionario/listarFuncionarios'),'refresh');
+          endif;
+        else:
+          set_msg('<div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          Erro ocorido ao salvar!</div>');
+        endif;
+      }elseif($categoria==4) {
+        $data = array(
+          'fnome' => $nome,
+          'Sexo' => $sexo,
+          'data_nascimento' => date('y-m-d H:i:s', strtotime($dataNascimento)),
+          'tipo_funcionario_id' => $categoria,
+          'data_created' => $now,
+        );
+          $last_id = $this->f->ultimo_id();
+        if($this->f->cadastrarFuncionario($data)):
+          $user = array(
+            'unome' => $email,
+            'usenha' => $pass,
+            'nivel' => $categoria,
+            'funcionario_id' => $last_id
+          );
+          if($this->f->cadastrar_usuario($user)):
+            set_msg('<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            Coordenador(a) '.$nome. ' registado com Sucesso!
+            </div>');
+            redirect(base_url('funcionario/listarFuncionarios'),'refresh');
+          endif;
+        else:
+          set_msg('<div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          Erro ocorido ao salvar!</div>');
+        endif;
+      }
+
+
     endif;
     $this->load->view('top',$dados);
     $this->load->view('funcionario/cadastrar');
