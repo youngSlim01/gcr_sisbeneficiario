@@ -86,11 +86,20 @@ class Beneficiario extends CI_Controller
 
     #  print_r($data);exit;
       if($this->ben->cadastrarbeneficiario($data)):
-        set_msg('<div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        Beneficiario '.$nome. ' registado com Sucesso!
-        </div>');
-        redirect('beneficiario/referir/'.$this->ben->ultimo_id());
+
+        if($referido==1):
+          set_msg('<div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          Beneficiario '.$nome. ' registado com Sucesso!
+          </div>');
+          redirect('beneficiario/referir/'.$this->ben->ultimo_id());
+        else:
+          set_msg('<div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          Beneficiario '.$nome. ' registado com Sucesso!
+          </div>');
+          redirect('beneficiario','refresh');
+        endif;
       else:
         set_msg('<div class="alert alert-danger alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -140,18 +149,21 @@ class Beneficiario extends CI_Controller
         'supervisor_id'=>$supervisor,
         'unidade_sanitaria_id'=>$unid_sanitaria,
         'date_created'=>data_actual(),
-        'beneficiario_id' => $this->ben->beneficiario_id($id)->id,
+        'beneficiario_id' =>$id,# $this->ben->beneficiario_id($id)->id,
         'beneficiario_codigo'=>$codigo,
         'servico_id'=>$servico,
         'projecto_id'=>$this->s->getServiceBy_id($servico)->projecto_id,
       );
 
       if($this->ben->addBeneficiario_reference($datas)):
-        set_msg('<div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        Beneficiario '.$codigo. ' adicionado com Sucesso!
-        </div>');
-        redirect('beneficiario');
+        $dados = array('referido' => 1,);
+        if($this->ben->actualizarRef_beneficiario($dados,$codigo)):
+          set_msg('<div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          Beneficiario '.$codigo. ' adicionado com Sucesso!
+          </div>');
+          redirect('beneficiario');
+      endif;
       else:
 
       endif;
@@ -165,8 +177,57 @@ class Beneficiario extends CI_Controller
   {
     $dados = array(
       'titulo'=>'Dados de diagnostico do Beneficiario',
-      'distritos'=>$this->d->listar_distritos(),
+      'ben'=>$this->ben->referencia($id),
+      'idref'=>$id
     );
+
+    $this->form_validation->set_rules('clinico_nome','Nome do clinico','trim|required');
+    $this->form_validation->set_rules('nit','NIT','required|trim');
+    $this->form_validation->set_rules('nid','NID','required|trim');
+
+    if($this->form_validation->run()==false):
+      if(validation_errors()):
+        set_msg('<div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <h4><i class="icon fa fa-warning"></i> Alerta!</h4><h5>'.validation_errors().'
+        </h5></div>');
+      endif;
+    else:
+      $nome_clinico = $this->input->post('clinico_nome');
+      $nit = $this->input->post('nit');
+      $nid = $this->input->post('nid');
+      $exame = $this->input->post('exame');
+      $resultado = $this->input->post('tratamento');
+      $id_refer = $this->ben->referencia_id($id);
+      $observacoes = $this->input->post('obs');
+      $benef_codigo = $this->input->post('codigo_beneficiario');
+
+      $datas = array(
+        'idreferencia' => $id_refer,
+        'nome_clinico'=>$nome_clinico,
+        'nit'=>$nit,
+        'nid'=>$nid,
+        'beneficiario_codigo'=>$benef_codigo,
+        'testado'=>$exame,
+        'resultado'=>$resultado,
+        'date_created'=>data_actual(),
+        'obs'=>$observacoes,
+      );
+
+      if($this->ben->addcontra_reference($datas)):
+        set_msg('<div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        Beneficiario '.$codigo. ' contra-referido com Sucesso!
+        </div>');
+        redirect('beneficiario');
+      else:
+        set_msg('<div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        Erro ao contra-referir!
+        </div>');
+        redirect('beneficiario');
+      endif;
+    endif;
 
     $this->load->view('top',$dados);
     $this->load->View("beneficiario/diagnostico");

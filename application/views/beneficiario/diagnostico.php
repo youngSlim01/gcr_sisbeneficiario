@@ -21,34 +21,28 @@
             <!-- general form elements -->
             <div class="box box-primary">
               <div class="box-header with-border">
-                <h3 class="box-title">Dados Demograficos</h3>
+                <h3 class="box-title" style="">Contra Referir - beneficiario <?php echo $ben->beneficiario_codigo;?></h3>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
-              <form role="form" id="frm_estudante" action="<?php echo base_url('beneficiario/cadastrar')?>" method="post">
+              <form role="form" id="frm_estudante" action="<?php echo base_url('beneficiario/diagnostico/').$idref;?>" method="post">
+              <input type="hidden" name="codigo_beneficiario" value="<?php echo $ben->beneficiario_codigo;?>"/>
               <div class="box-body">
-              <div class="form-group">
-              <label for="apelido">Resultado de Diagnosticado</label>
-              <input type="text" class="form-control" name="bnome">
-              </div>
-              <div class="form-group">
-                <label>local de tratamento</label>
-               <select class="form-control" name="ltratamento" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                  <option selected="selected">Selecione ...</option>
-                  <option id="1">Unidade sanitaria</option>
-                  <option id="2">Comunidade</option>
-                </select>
-              </div>
-              <div class="form-group">
-              <label for="apelido">Unidade sanitaria</label>
-              <input type="text" class="form-control" name="unid">
-              </div>
+                <div class="form-group">
+                <label for="apelido">Nome do Clinico</label>
+                <input type="text" class="form-control" name="clinico_nome" placeholder="Escreve ...">
+                </div>
+                <div class="form-group">
+                <label for="apelido">NIT</label>
+                <input type="text" class="form-control" name="nit" value="<?php  ?>" placeholder="Escreve ...">
+                </div>
+                <div class="form-group">
+                <label for="apelido">NID</label>
+                <input type="text" class="form-control" name="nid" placeholder="Escreve ..." value="<?php  ?>">
+                </div>
               </div>
 
               <!-- /.box-body -->
-            </div>
-            <div class="form-group">
-            <button type="submit" id="guardar" class="btn btn-primary col-md-3"> <i class="fa fa-save"></i> Guardar</button>
             </div>
             <!-- /.box -->
           </div>
@@ -63,23 +57,30 @@
           <!-- /.box-header -->
           <div class="box-body">
             <div class="form-group">
-              <label>Iniciou tratamento?</label>
+             <label>Exame</label>
+             <select class="form-control" name="exame" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                  <option>Tuberculose</option>
+                  <option >HIV</option>
+                  <option >ITS</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Resultado de exame</label>
              <select class="form-control" name="tratamento" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                <option selected="selected">Selecione ...</option>
-                <option id="1">Sim</option>
-                <option id="2">Nao</option>
+                <option value="Negativo">Negativo</option>
+                <option value="Posetivo">Posetivo</option>
               </select>
             </div>
               <div class="form-group">
                 <label>Observacoes</label>
                 <input type="text" class="form-control" name="obs" placeholder="Escreve ...">
               </div>
-              <div class="form-group">
-                <label>Nit de caso index</label>
-                <input type="text" class="form-control" name="nit_index" placeholder="Enter ...">
-              </div>
           </div>
 
+          <div class="form-group">
+          <button type="submit" id="guardar" class="btn btn-primary col-md-3"> <i class="fa fa-save"></i> Guardar</button>
+          </div>
           </form>
           <div class="pull-right">
           <p class="box-title pull-right">Passo 1/3</p>

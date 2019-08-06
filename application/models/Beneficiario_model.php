@@ -18,15 +18,21 @@ class Beneficiario_model extends CI_model
   }
   public function get_all()
   {
-    $this->db->select('beneficiario.*, reference.*, distrito.nome_distrito');
+    $this->db->query('beneficiario.*,distrito.nome_distrito');
     $this->db->where('beneficiario.id = reference.beneficiario_id');
     $this->db->join('distrito','distrito = distrito.id_distrito','inner');
-    return $this->db->get('beneficiario, reference')->result();
+    return $this->db->get('beneficiario')->result();
   }
   public function cadastrarbeneficiario($dados)
   {
-    $this->db->insert('beneficiario',$dados);
-    return $this->db->insert_id();
+    return $this->db->insert('beneficiario',$dados);
+    #$this->db->insert_id();
+  }
+
+  public function actualizarRef_beneficiario($dados,$id)
+  {
+    $this->db->where('codigo_beneficiario',$id);
+    return $this->db->update('beneficiario',$dados);
   }
 
   public function ultimo_id()
@@ -42,6 +48,21 @@ class Beneficiario_model extends CI_model
     return $resultado;
   }
 
+  public function referencia_id($id)
+  {
+    $this->db->select('*');
+		$this->db->where('beneficiario_id', $id);
+    $resultado = $this->db->get('reference')->row();
+    return $resultado->idreferencia;
+  }
+
+  public function referencia($id)
+  {
+    $this->db->select('*');
+		$this->db->where('beneficiario_id', $id);
+    return $resultado = $this->db->get('reference')->row();
+  }
+
   public function addBeneficiario_reference($dados)
   {
     $this->db->insert('reference',$dados);
@@ -49,7 +70,7 @@ class Beneficiario_model extends CI_model
   }
   public function contar_beneficiarios()
   {
-    return $this->db->count_all('reference');
+    return $this->db->count_all('beneficiario');
   }
 
   public function contar_beneficiarios_por_projecto($id){
@@ -62,7 +83,13 @@ class Beneficiario_model extends CI_model
     $this->db->select('*');
     $this->db->where('projecto_id', $id);
     $this->db->where('servico_id', $idserv);
-    $resultado = $this->db->get('beneficiario_servico')->num_rows();
+    $resultado = $this->db->get('reference')->num_rows();
     return $resultado;
+  }
+
+  public function addcontra_reference($dados)
+  {
+    $this->db->insert('contra_reference',$dados);
+    return $this->db->insert_id();
   }
 }

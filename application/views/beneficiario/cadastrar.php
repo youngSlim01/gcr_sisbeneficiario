@@ -95,7 +95,7 @@
           <select class="form-control" name="bdeficiencia" style="width: 100%;" tabindex="-1" aria-hidden="true">
           <option selected="selected">Nenhuma...</option>
           <option value="Fisica">Fisica</option>
-          <option value="Fisica">Fisica</option>
+          <option value="Visual">Visual</option>
           <option value="Mental">Mental</option>
           <option value="Auditiva">Auditiva</option>
           </select>
