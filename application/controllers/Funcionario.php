@@ -89,7 +89,7 @@ class Funcionario extends CI_Controller
       $unid_sanitaria = $this->input->post('funidade_sanitaria');
       $now = date('Y-m-d H:i:s');
       $email = $this->input->post('unome');
-      $pass = "12345678";
+      $pass = md5("12345678");
 
       $dados = array(
         'fnome' => $nome,
@@ -143,7 +143,7 @@ class Funcionario extends CI_Controller
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
               Supervisor(a) '.$nome. ' registado com Sucesso!
               </div>');
-              redirect(base_url('funcionario'),'refresh');
+              redirect(base_url('funcionario/listar_supervisores'),'refresh');
             endif;
           endif;
         else:

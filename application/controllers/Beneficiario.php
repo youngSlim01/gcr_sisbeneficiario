@@ -25,7 +25,12 @@ class Beneficiario extends CI_Controller
 
   public function dashboard()
   {
-    $dados = array('titulo'=>'Dados dos Beneficiarios');
+    $dados = array(
+      'titulo'=>'Dados dos Beneficiarios',
+      'contar_referidos'=>$this->ben->contar_referidos(),
+      'contar_cr'=>$this->ben->contar_contra_reference(),
+      'contar_scr'=>$this->ben->contar_sem_contra_reference(),
+    );
 		$this->load->view('top',$dados);
     $this->load->View("beneficiario/index");
 		$this->load->view('botton');
@@ -67,7 +72,7 @@ class Beneficiario extends CI_Controller
       $obs = $this->input->post('bobs');
       $distrito = $this->input->post('bdistrito');
       $deficiencia = $this->input->post('bdeficiencia');
-      $func_id = 1;
+      $func_id = $this->session->userdata('user_id');
       $data = array(
         'codigo_beneficiario'=>$codigo,
         'nome' => $nome,
@@ -219,7 +224,7 @@ class Beneficiario extends CI_Controller
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         Beneficiario '.$codigo. ' contra-referido com Sucesso!
         </div>');
-        redirect('beneficiario');
+        redirect('beneficiario/todoscontrareferidos');
       else:
         set_msg('<div class="alert alert-danger alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -231,6 +236,102 @@ class Beneficiario extends CI_Controller
 
     $this->load->view('top',$dados);
     $this->load->View("beneficiario/diagnostico");
+		$this->load->view('botton');
+  }
+
+  public function referidos()
+  {
+    $dados = array(
+      'titulo'=>'Beneficiarios contrareferidos',
+      'beneficiarios' => $this->ben->referidos(),
+    );
+
+    $this->load->view('top',$dados);
+    $this->load->View("beneficiario/referidos/listar");
+		$this->load->view('botton');
+  }
+
+  public function contrareferidos()
+  {
+    $dados = array(
+      'titulo'=>'Beneficiarios contrareferidos',
+      'beneficiarios' => $this->ben->contra_reference(),
+    );
+
+    $this->load->view('top',$dados);
+    $this->load->View("beneficiario/contrareferidos/index");
+		$this->load->view('botton');
+  }
+
+  public function todoscontrareferidos()
+  {
+    $dados = array(
+      'titulo'=>'Beneficiarios contrareferidos',
+      'beneficiarios' => $this->ben->contra_reference(),
+    );
+
+    $this->load->view('top',$dados);
+    $this->load->View("beneficiario/contrareferidos/listar");
+		$this->load->view('botton');
+  }
+
+  public function hivp()
+  {
+    $dados = array(
+      'titulo'=>'Beneficiarios contrareferidos',
+      'beneficiarios' => $this->ben->hiv_posetivo(),
+    );
+
+    $this->load->view('top',$dados);
+    $this->load->View("beneficiario/contrareferidos/listar");
+		$this->load->view('botton');
+  }
+
+  public function hivn()
+  {
+    $dados = array(
+      'titulo'=>'Beneficiarios contrareferidos',
+      'beneficiarios' => $this->ben->hiv_negativo(),
+    );
+
+    $this->load->view('top',$dados);
+    $this->load->View("beneficiario/contrareferidos/listar");
+		$this->load->view('botton');
+  }
+
+  public function tbp()
+  {
+    $dados = array(
+      'titulo'=>'Beneficiarios contrareferidos',
+      'beneficiarios' => $this->ben->tb_posetivo(),
+    );
+
+    $this->load->view('top',$dados);
+    $this->load->View("beneficiario/contrareferidos/listar");
+    $this->load->view('botton');
+  }
+
+  public function tbn()
+  {
+    $dados = array(
+      'titulo'=>'Beneficiarios contrareferidos',
+      'beneficiarios' => $this->ben->tb_negativo(),
+    );
+
+    $this->load->view('top',$dados);
+    $this->load->View("beneficiario/contrareferidos/listar");
+		$this->load->view('botton');
+  }
+
+  public function semcontrareferencias()
+  {
+    $dados = array(
+      'titulo'=>'Beneficiarios contrareferidos',
+      'beneficiarios' => $this->ben->sem_contra_reference(),
+    );
+
+    $this->load->view('top',$dados);
+    $this->load->View("beneficiario/semcontrareferencias/listar");
 		$this->load->view('botton');
   }
 }

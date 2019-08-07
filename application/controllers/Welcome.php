@@ -6,6 +6,7 @@ class Welcome extends CI_Controller {
       parent::__construct();
       $this->load->model('Projecto_model','p');
 			$this->load->model('Servico_model','s');
+			verifica_login();
   }
 	public function index()
 	{

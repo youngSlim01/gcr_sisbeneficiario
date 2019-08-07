@@ -44,7 +44,7 @@ if(!function_exists('verifica_login')){
 		$redireciona=base_url('login');
 		$ci = & get_instance();
 		if($ci->session->userdata('logged') != TRUE):
-			set_msg('<div class="alert alert-warnig"><strong>Atencao</strong>Area restrita!</div>');
+			set_msg('<div class="alert alert-warnig"><strong>Atencao</strong> Area restrita!</div>');
 			redirect($redireciona,'refresh');
 		endif;
 	}

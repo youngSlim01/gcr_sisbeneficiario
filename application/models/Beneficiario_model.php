@@ -18,11 +18,79 @@ class Beneficiario_model extends CI_model
   }
   public function get_all()
   {
-    $this->db->query('beneficiario.*,distrito.nome_distrito');
-    $this->db->where('beneficiario.id = reference.beneficiario_id');
-    $this->db->join('distrito','distrito = distrito.id_distrito','inner');
-    return $this->db->get('beneficiario')->result();
+    return $this->db->query('SELECT `beneficiario`.*, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` WHERE beneficiario.codigo_beneficiario NOT IN (SELECT contra_reference.beneficiario_codigo FROM contra_reference)')->result();
   }
+
+  public function contra_reference()
+  {
+    return $this->db->query('SELECT `beneficiario`.*, `contra_reference`.`resultado`, `contra_reference`.`testado`, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` INNER JOIN `contra_reference` ON `beneficiario_codigo` = `contra_reference`.`beneficiario_codigo` WHERE beneficiario.codigo_beneficiario IN (SELECT contra_reference.beneficiario_codigo FROM contra_reference) AND beneficiario.codigo_beneficiario = contra_reference.beneficiario_codigo')->result();
+  }
+
+  public function tb_posetivo($value='')
+  {
+    return $this->db->query('SELECT `beneficiario`.*, `contra_reference`.`resultado`, `contra_reference`.`testado`, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` INNER JOIN `contra_reference` ON `beneficiario_codigo` = `contra_reference`.`beneficiario_codigo` WHERE beneficiario.codigo_beneficiario IN (SELECT contra_reference.beneficiario_codigo FROM contra_reference) AND beneficiario.codigo_beneficiario = contra_reference.beneficiario_codigo AND contra_reference.resultado = "Posetivo" AND contra_reference.testado = "TB"')->result();
+  }
+
+  public function contar_tb_posetivo($value='')
+  {
+    return $this->db->query('SELECT `beneficiario`.*, `contra_reference`.`resultado`, `contra_reference`.`testado`, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` INNER JOIN `contra_reference` ON `beneficiario_codigo` = `contra_reference`.`beneficiario_codigo` WHERE beneficiario.codigo_beneficiario IN (SELECT contra_reference.beneficiario_codigo FROM contra_reference) AND beneficiario.codigo_beneficiario = contra_reference.beneficiario_codigo AND contra_reference.resultado = "Posetivo" AND contra_reference.testado = "TB"')->num_rows();
+  }
+
+  public function tb_negativo($value='')
+  {
+    return $this->db->query('SELECT `beneficiario`.*, `contra_reference`.`resultado`, `contra_reference`.`testado`, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` INNER JOIN `contra_reference` ON `beneficiario_codigo` = `contra_reference`.`beneficiario_codigo` WHERE beneficiario.codigo_beneficiario IN (SELECT contra_reference.beneficiario_codigo FROM contra_reference) AND beneficiario.codigo_beneficiario = contra_reference.beneficiario_codigo AND contra_reference.resultado = "Negativo" AND contra_reference.testado = "TB"')->result();
+  }
+
+  public function contar_tb_negativo($value='')
+  {
+    return $this->db->query('SELECT `beneficiario`.*, `contra_reference`.`resultado`, `contra_reference`.`testado`, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` INNER JOIN `contra_reference` ON `beneficiario_codigo` = `contra_reference`.`beneficiario_codigo` WHERE beneficiario.codigo_beneficiario IN (SELECT contra_reference.beneficiario_codigo FROM contra_reference) AND beneficiario.codigo_beneficiario = contra_reference.beneficiario_codigo AND contra_reference.resultado = "Negativo" AND contra_reference.testado = "TB"')->num_rows();
+  }
+
+  public function hiv_posetivo($value='')
+  {
+    return $this->db->query('SELECT `beneficiario`.*, `contra_reference`.`resultado`, `contra_reference`.`testado`, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` INNER JOIN `contra_reference` ON `beneficiario_codigo` = `contra_reference`.`beneficiario_codigo` WHERE beneficiario.codigo_beneficiario IN (SELECT contra_reference.beneficiario_codigo FROM contra_reference) AND beneficiario.codigo_beneficiario = contra_reference.beneficiario_codigo AND contra_reference.resultado = "Posetivo" AND contra_reference.testado = "HIV"')->result();
+  }
+
+  public function contar_hiv_posetivo($value='')
+  {
+    return $this->db->query('SELECT `beneficiario`.*, `contra_reference`.`resultado`, `contra_reference`.`testado`, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` INNER JOIN `contra_reference` ON `beneficiario_codigo` = `contra_reference`.`beneficiario_codigo` WHERE beneficiario.codigo_beneficiario IN (SELECT contra_reference.beneficiario_codigo FROM contra_reference) AND beneficiario.codigo_beneficiario = contra_reference.beneficiario_codigo AND contra_reference.resultado = "Posetivo" AND contra_reference.testado = "HIV"')->num_rows();
+  }
+
+  public function hiv_negativo($value='')
+  {
+    return $this->db->query('SELECT `beneficiario`.*, `contra_reference`.`resultado`, `contra_reference`.`testado`, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` INNER JOIN `contra_reference` ON `beneficiario_codigo` = `contra_reference`.`beneficiario_codigo` WHERE beneficiario.codigo_beneficiario IN (SELECT contra_reference.beneficiario_codigo FROM contra_reference) AND beneficiario.codigo_beneficiario = contra_reference.beneficiario_codigo AND contra_reference.resultado = "Negativo" AND contra_reference.testado = "HIV"')->result();
+  }
+
+  public function contar_hiv_negativo($value='')
+  {
+    return $this->db->query('SELECT `beneficiario`.*, `contra_reference`.`resultado`, `contra_reference`.`testado`, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` INNER JOIN `contra_reference` ON `beneficiario_codigo` = `contra_reference`.`beneficiario_codigo` WHERE beneficiario.codigo_beneficiario IN (SELECT contra_reference.beneficiario_codigo FROM contra_reference) AND beneficiario.codigo_beneficiario = contra_reference.beneficiario_codigo AND contra_reference.resultado = "Negativo" AND contra_reference.testado = "HIV"')->num_rows();
+  }
+
+  public function contar_contra_reference()
+  {
+    return $this->db->query('SELECT `beneficiario`.*, `contra_reference`.`resultado`, `contra_reference`.`testado`, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` INNER JOIN `contra_reference` ON `beneficiario_codigo` = `contra_reference`.`beneficiario_codigo` WHERE beneficiario.codigo_beneficiario IN (SELECT contra_reference.beneficiario_codigo FROM contra_reference) AND beneficiario.codigo_beneficiario = contra_reference.beneficiario_codigo')->num_rows();
+  }
+
+  public function referidos()
+  {
+    return $this->db->query('SELECT `beneficiario`.*, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` WHERE beneficiario.codigo_beneficiario IN (SELECT reference.beneficiario_codigo FROM reference)')->result();
+  }
+
+  public function contar_referidos()
+  {
+    return $this->db->query('SELECT `beneficiario`.*, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` WHERE beneficiario.codigo_beneficiario IN (SELECT reference.beneficiario_codigo FROM reference)')->num_rows();
+  }
+
+  public function sem_contra_reference()
+  {
+    return $this->db->query('SELECT `beneficiario`.*, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` WHERE beneficiario.codigo_beneficiario NOT IN (SELECT reference.beneficiario_codigo FROM reference)')->result();
+  }
+
+  public function contar_sem_contra_reference()
+  {
+    return $this->db->query('SELECT `beneficiario`.*, `distrito`.`nome_distrito` FROM `beneficiario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` WHERE beneficiario.codigo_beneficiario NOT IN (SELECT reference.beneficiario_codigo FROM reference)')->num_rows();
+  }
+
   public function cadastrarbeneficiario($dados)
   {
     return $this->db->insert('beneficiario',$dados);

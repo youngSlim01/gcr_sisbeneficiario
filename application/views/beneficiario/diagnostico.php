@@ -59,9 +59,9 @@
             <div class="form-group">
              <label>Exame</label>
              <select class="form-control" name="exame" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                  <option>Tuberculose</option>
-                  <option >HIV</option>
-                  <option >ITS</option>
+                  <option value="TB">Tuberculose</option>
+                  <option value="HIV">HIV</option>
+                  <option value="ITS">ITS</option>
               </select>
             </div>
 

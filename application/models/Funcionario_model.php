@@ -88,5 +88,17 @@ class Funcionario_model extends CI_Model
   {
     return $this->db->insert_id();
   }
+
+  public function buscarPorId($id)
+  {
+    $this->db->where('id_funcionario',$id);
+    return $this->db->get('funcionario')->row();
+  }
+
+  public function buscarFuncaoPor_Id($id)
+  {
+    $this->db->where('id',$id);
+    return $this->db->get('tipo_funcionario')->row();
+  }
 }
  ?>

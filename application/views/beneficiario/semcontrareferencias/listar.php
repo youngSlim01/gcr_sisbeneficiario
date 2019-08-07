@@ -4,8 +4,8 @@
 
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Beneficiarios referidos e nao-referidos</h3>
-        <a href="<?php echo base_url('beneficiario/cadastrar');?>" class="pull-right"><button type="button" class="btn btn-block btn-success">Adicionar</button></a>
+        <h3 class="box-title">beneficiarios sem contrareferidos</h3>
+        <a href="<?php echo base_url('beneficiario/dashboard');?>" class="pull-right"><button type="button" class="btn btn-block btn-success">Voltar</button></a>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
