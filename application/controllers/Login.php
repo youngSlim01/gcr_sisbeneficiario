@@ -98,6 +98,40 @@ class Login extends CI_Controller
 	        $this->load->view('trocar_login',$dados);
         }
 
+        public function recuperar_senha($id)
+        {
+	        $dados = array(
+            'codigo'=>$id,
+	        );
+          //Regras de validação
+          $this->form_validation->set_rules('senha','e-mail','trim|required');
+          $this->form_validation->set_rules('confirmsenha','palavra-passe','trim|required');
+
+          //verificar a validação
+          if($this->form_validation->run()==FALSE):
+              if(validation_errors()):
+                  set_msg(validation_errors());
+              endif;
+          else:
+              //se a validação estiver correta executará esste codigo
+              $form = $this->input->post();
+              $senhaconfirm = $form['confirmsenha'];
+              $senha = $form['senha'];
+
+              $data = array('usenha' => md5($senha), );
+              if($senha == $senhaconfirm):
+                if($this->usuario->actualizar_senha($data,$id)):
+                    echo '<script>alert("Senha actualizada com sucesso!")</script>';
+                    redirect(base_url(''),'refresh');
+                endif;
+              else:
+                set_msg("As senhas nao coscidem!");
+              endif;
+          endif;
+
+	        $this->load->view('trocar_login',$dados);
+        }
+
         public function sair(){
 	        if ($this->session->userdata('logged')):
 	            # code...
