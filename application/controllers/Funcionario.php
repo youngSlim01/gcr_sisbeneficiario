@@ -98,6 +98,7 @@ class Funcionario extends CI_Controller
         'tipo_funcionario_id' => $categoria,
         'projecto_id' => $projecto,
         'data_created' => $now,
+        'distrito'=>$distrito
       );
 
       if($categoria == 1){
@@ -105,7 +106,6 @@ class Funcionario extends CI_Controller
           $detalhes = array(
             'id_activista' =>$this->f->ultimo_id(),
             'unidade_sanitaria_id'=>$unid_sanitaria,
-            'distrito_id'=>$distrito,
           );
           $last_id = $this->f->ultimo_id();
           if($this->det->insert_detalhes($detalhes)):
@@ -128,7 +128,6 @@ class Funcionario extends CI_Controller
         if($this->f->cadastrarFuncionario($dados)):
           $detalhe = array(
             'id_activista' =>$this->f->ultimo_id(),
-            'distrito_id'=>$distrito,
           );
           $last_id = $this->f->ultimo_id();
           if($this->det->insert_detalhes($detalhe)):

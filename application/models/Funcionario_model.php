@@ -11,18 +11,12 @@ class Funcionario_model extends CI_Model
 
   public function listarActivistas()
   {
-    $this->db->join('tipo_funcionario','tipo_funcionario_id=tipo_funcionario.id','inner');
-    $this->db->join('projecto','projecto_id=projecto.id','inner');
-    $this->db->where('tipo_funcionario_id',1);
-    return $this->db->get('funcionario')->result();
+    return $this->db->query('SELECT `funcionario`.*, `distrito`.`nome_distrito`,tipo_funcionario.nome_funcao,projecto.nome FROM `funcionario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` INNER JOIN `tipo_funcionario` ON `tipo_funcionario_id`=`tipo_funcionario`.`id` INNER JOIN `projecto` ON `projecto_id`=`projecto`.`id` WHERE `tipo_funcionario_id` = 1')->result();
   }
 
   public function listarSupervisores()
   {
-    $this->db->join('tipo_funcionario','tipo_funcionario_id=tipo_funcionario.id','inner');
-    $this->db->join('projecto','projecto_id=projecto.id','inner');
-    $this->db->where('tipo_funcionario_id',2);
-    return $this->db->get('funcionario')->result();
+    return $this->db->query('SELECT `funcionario`.*, `distrito`.`nome_distrito`,tipo_funcionario.nome_funcao,projecto.nome FROM `funcionario` INNER JOIN `distrito` ON `distrito` = `distrito`.`id_distrito` INNER JOIN `projecto` ON `projecto_id` = `projecto`.`id` INNER JOIN `tipo_funcionario` ON tipo_funcionario_id = tipo_funcionario.id WHERE funcionario.id_funcionario = 2')->result();
   }
 
   public function listarGestores()

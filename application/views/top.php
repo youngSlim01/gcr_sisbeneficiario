@@ -1,6 +1,13 @@
 <?php
 	defined('BASEPATH')OR exit('No direct script access allowed');
 ?>
+<?php if($this->session->userdata('funcao')=="Supervisor"):?>
+	<style>
+		#admin{
+			display: none;
+		}
+	</style>
+<?php endif;?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,7 +84,7 @@
 
                 <p>
                   <?php echo $this->session->userdata('nome');?> - <?php echo $this->session->userdata('funcao');?>
-                  <small>Desde Junho de <?php echo $this->session->userdata('data_admissao');?></small>
+                  <!--<small>Desde Junho de <?php echo $this->session->userdata('data_admissao');?></small>-->
                 </p>
               </li>
 
@@ -148,7 +155,7 @@
           </ul>
         </li>
 
-				<li class="treeview">
+				<li class="treeview" id="admin">
           <a href="#">
             <i class="fa fa-files-o"></i>
             <span>Configura&ccedil;&otilde;es</span>

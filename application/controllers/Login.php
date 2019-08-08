@@ -16,10 +16,12 @@ class Login extends CI_Controller
 
 	 	public function index()
         {
+          //echo md5('12345678');exit;
           //Regras de validação
 	        $this->form_validation->set_rules('email','e-mail','trim|required');
 	        $this->form_validation->set_rules('senha','palavra-passe','trim|required');
 
+          //echo md5('admin');exit;
 	        //verificar a validação
 	        if($this->form_validation->run()==FALSE):
 	            if(validation_errors()):
@@ -45,6 +47,7 @@ class Login extends CI_Controller
 	                $this->session->set_userdata('nome',(string)$funcionario->fnome);
 	                $this->session->set_userdata('email',$email);
                   $this->session->set_userdata('funcao',(string)$tipo_funcionario->nome_funcao);
+
                   $this->session->set_userdata('data_admissao',$funcionario->data_created);
 
 	                if($user->usenha != md5('12345678')):
@@ -129,7 +132,7 @@ class Login extends CI_Controller
               endif;
           endif;
 
-	        $this->load->view('trocar_login',$dados);
+	        $this->load->view('esqueceu_senha',$dados);
         }
 
         public function sair(){

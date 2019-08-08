@@ -21,7 +21,7 @@
             <th>Sexo</th>
             <th>Idade</th>
             <th>Projecto</th>
-            <th>Accoes</th>
+
           </tr>
           </thead>
           <tbody>
@@ -32,7 +32,7 @@
                 <td><?php if($func->Sexo==1){echo "Masculino";}else{echo "Feminino";} ?></td>
                 <td><?php echo $ano_actual - (int)$func->data_nascimento; ?></td>
                 <td><?php echo $func->nome; ?></td>
-                <td>X</td>
+
               </tr>
             <?php endforeach; ?>
           </tbody>
@@ -43,7 +43,7 @@
               <th>Sexo</th>
               <th>Localiza&ccedil;&atilde;o</th>
               <th>Projecto</th>
-              <th>Accoes</th>
+            
             </tr>
           </tfoot>
         </table>
